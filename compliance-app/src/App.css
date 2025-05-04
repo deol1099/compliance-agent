@@ -1,0 +1,58 @@
+body {
+  font-family: Arial, sans-serif;
+  /*background: #fff8f0;*/
+  background-color: #fbf0df;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+/*section {*/
+/*  padding: 40px;*/
+/*  border-bottom: 1px solid #ccc;*/
+/*}*/
+button {
+  background-color: #d56a23;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  transition-duration: 0.3s;
+}
+button:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+.faq-item {
+  margin-bottom: 20px;
+}
+.faq-item h4 {
+  color: rgba(0, 0, 0, 0.8);
+}
+.contact ul {
+  list-style: none;
+  padding: 0;
+}
+.socials a {
+  color: #d35400;
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+.App1{
+  display: inline-flex;
+}
+.contact {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+.contact h2{
+  margin-left: 30px;
+  padding-top: 20px;
+}
+.contact ul {
+  display: inline-flex;
+}
+.contact li {
+  margin: 0 30px;
+}
