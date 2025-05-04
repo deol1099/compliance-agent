@@ -1,5 +1,17 @@
 .hero {
-    display: flex;
-    flex-direction: row-reverse;
-
+    display: inline-flex;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    width: 100%;
+}
+.hero-body{
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 50px;
+}
+.pdf1{
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+    margin: 20px;
 }

@@ -9,11 +9,6 @@ const Contact = () => {
                 <li><strong>Phone:</strong> +1 (555) 123-4567</li>
                 <li><strong>Address:</strong> 123 Mortgage Blvd, Suite 200, Loanville, USA</li>
             </ul>
-            <p>Follow us:</p>
-            <ul className="socials">
-                <li><a href="https://linkedin.com">LinkedIn</a></li>
-                <li><a href="https://twitter.com">Twitter</a></li>
-            </ul>
         </section>
     );
 };
