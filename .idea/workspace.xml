@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d94761a-9570-404b-b572-f3a3b85e45da" name="Changes" comment="" />
+    <list default="true" id="2d94761a-9570-404b-b572-f3a3b85e45da" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/0.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/0.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/1.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/1.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/2.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/2.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/3.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/3.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/4.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/4.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/5.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/5.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/index.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/index.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/index.pack.old" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/index.pack.old" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/App.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +32,7 @@
       <list>
         <option value="Class" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -87,6 +105,8 @@
       <workItem from="1746251517894" duration="3857000" />
       <workItem from="1746327730590" duration="7791000" />
       <workItem from="1746391380991" duration="987000" />
+      <workItem from="1746392865260" duration="3338000" />
+      <workItem from="1746478797946" duration="2732000" />
     </task>
     <servers />
   </component>
