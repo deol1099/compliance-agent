@@ -64,6 +64,20 @@
     border-radius: 5px;
     cursor: pointer;
 }
+.download-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+    background-color: #45a049;
+}
 
 .merged-preview {
     margin-top: 20px;
