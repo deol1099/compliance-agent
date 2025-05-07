@@ -1,27 +1,19 @@
-import { useState } from 'react';
+import { PDFDocument } from 'pdf-lib';
 
-const MergeForm = () => {
-    const [email, setEmail] = useState('');
-    const [links, setLinks] = useState('');
-    const [notes, setNotes] = useState('');
+export async function mergePDFSections(filesByBox, sectionOrder) {
+    const mergedPdf = await PDFDocument.create();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log({ email, links, notes });
-        // Submit to backend
-    };
+    for (const section of sectionOrder) {
+        const files = filesByBox[section] || [];
+        for (const file of files) {
+            const arrayBuffer = await file.arrayBuffer();
+            const pdf = await PDFDocument.load(arrayBuffer);
+            const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+            copiedPages.forEach((page) => mergedPdf.addPage(page));
+        }
+    }
 
-    return (
-        <section className="form">
-            <h2>Merge Your Files</h2>
-            <form onSubmit={handleSubmit}>
-                <input type="email" placeholder="Your Email" onChange={(e) => setEmail(e.target.value)} />
-                <input type="text" placeholder="Dropbox File Links" onChange={(e) => setLinks(e.target.value)} />
-                <textarea placeholder="Notes" onChange={(e) => setNotes(e.target.value)} />
-                <button type="submit">Generate PDF</button>
-            </form>
-        </section>
-    );
-};
+    const mergedPdfBytes = await mergedPdf.save();
+    return URL.createObjectURL(new Blob([mergedPdfBytes], { type: 'application/pdf' }));
+}
 
-export default MergeForm;
