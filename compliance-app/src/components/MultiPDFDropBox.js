@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { mergePDFSections } from './MergeForm';
+import { mergePDFSections } from './MergePDF';
 import './MultiPDFDropBox.css';
 
 const SECTIONS = [
@@ -13,7 +13,7 @@ const SECTIONS = [
         "Lender Commitment",
         "MPP Application",
         "Indemnification Form",
-        "Income - B1 (LOE, Pay stubs, T4/T1, NOA, Declared Income, Pension)",
+        "Income - B1 (LOE, Pay stubs, T4/T1, NOA, Bank Statements, Declared Income, Pension)",
         "Income - B2",
         "Down-payment Verification",
         "MLS and Offer to Purchase",
@@ -97,6 +97,11 @@ export function MultiPDFDropBox() {
                 <div className="merged-preview">
                     <h3>Merged PDF Preview</h3>
                     <iframe src={mergedPDFUrl} width="100%" height="600" />
+                    <div style={{ marginTop: '10px' }}>
+                        <a href={mergedPDFUrl} download="merged-document.pdf">
+                            <button className="download-btn">Download PDF</button>
+                        </a>
+                    </div>
                 </div>
             )}
         </div>
