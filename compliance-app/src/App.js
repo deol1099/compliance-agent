@@ -13,12 +13,12 @@ function HomePage() {
         <>
             <Hero />
             <Features />
-            <div className="App1">
-                {/* Wrap MergeForm in a Link */}
-                <Link to="/compliance-upload" style={{ textDecoration: 'none' }}>
-                </Link>
+            {/*<div className="App1">*/}
+            {/*    /!* Wrap MergeForm in a Link *!/*/}
+            {/*    <Link to="/compliance-upload" style={{ textDecoration: 'none' }}>*/}
+            {/*    </Link>*/}
                 <FAQ />
-            </div>
+            {/*</div>*/}
             <Contact />
         </>
     );

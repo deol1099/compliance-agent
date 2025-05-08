@@ -8,7 +8,7 @@ const Hero = () => (
             <h1>Simplify Mortgage Compliance</h1>
             <p>Merge multiple mortgage-related PDFs into a single, compliant file with just a few clicks.</p>
             <Link to={"compliance-upload"}>
-                <button>Merge PDFs Now</button>
+                <button className="merge-button">Merge PDFs Now</button>
             </Link>
         </div>
         <div className="pdf">
