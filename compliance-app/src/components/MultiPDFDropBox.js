@@ -1,7 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { mergePDFSections } from './MergePDF';
 import './MultiPDFDropBox.css';
+import PDFViewer from './PDFViewer';
+
 
 const SECTIONS = [
         "Client Checklist",
@@ -71,9 +73,18 @@ export function MultiPDFDropBox() {
     const [mergedPDFUrl, setMergedPDFUrl] = useState(null);
 
     const handleMerge = async () => {
-        const url = await mergePDFSections(filesBySection, SECTIONS);
-        setMergedPDFUrl(url);
+        try {
+            const url = await mergePDFSections(filesBySection, SECTIONS);
+            if (url) {
+                setMergedPDFUrl(url);
+            } else {
+                console.error('Failed to merge PDFs.');
+            }
+        } catch (error) {
+            console.error('Error merging PDFs:', error);
+        }
     };
+
 
     const updateFilesForSection = (section) => (updater) => {
         setFilesBySection(prev => ({
@@ -96,7 +107,7 @@ export function MultiPDFDropBox() {
             {mergedPDFUrl && (
                 <div className="merged-preview">
                     <h3>Merged PDF Preview</h3>
-                    <iframe src={mergedPDFUrl} width="100%" height="600" />
+                    <PDFViewer pdfUrl={mergedPDFUrl} />
                     <div style={{ marginTop: '10px' }}>
                         <a href={mergedPDFUrl} download="merged-document.pdf">
                             <button className="download-btn">Download PDF</button>

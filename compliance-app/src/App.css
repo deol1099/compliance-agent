@@ -10,7 +10,7 @@ body {
 /*  padding: 40px;*/
 /*  border-bottom: 1px solid #ccc;*/
 /*}*/
-button {
+.merge-button {
   background-color: #d56a23;
   color: white;
   padding: 10px 20px;

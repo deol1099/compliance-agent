@@ -1,12 +1,18 @@
 .features1 {
-    display: inline-flex;
-    margin: 20px;
+    display: flex;
+    /*margin-left: 200px;*/
     width: 100%;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: row;
+
 }
 .features-img{
     width: 300px;
     height: 300px;
-    margin-left: 20px;
+    margin-left: 380px;
+    align-items: center;
 }
 
 .why-compliance {
@@ -51,6 +57,16 @@
     color: #555;
 }
 .features {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    margin-left: 30px;
+    /*margin-left: 30px;*/
+    /*align-items: center;*/
+}
+li::marker {
+    color: hotpink;
+}
+
+li:first-child::marker {
+    font-size: 5rem;
 }
