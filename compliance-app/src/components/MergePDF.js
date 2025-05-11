@@ -1,26 +1,45 @@
 import { PDFDocument } from 'pdf-lib';
-
-export async function mergePDFSections(filesByBox, sectionOrder) {
+import axios from 'axios';
+export async function mergePDFSections(filesBySection, sectionOrder) {
     const mergedPdf = await PDFDocument.create();
 
     for (const section of sectionOrder) {
-        const files = filesByBox[section] || [];
+        const files = filesBySection[section] || [];
 
-        for (const item of files) {
-            const file = item instanceof File ? item : item.file || null;
-
-            if (!file || typeof file.arrayBuffer !== 'function'){
-                console.error(`Skipping invalid file in section "${section}":`, item);
-                continue;
-            }
+        for (const { file } of files) {
+            try {
                 const arrayBuffer = await file.arrayBuffer();
-                const pdf = await PDFDocument.load(arrayBuffer);
+                const pdf = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true }); // Optional fallback
                 const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-                copiedPages.forEach((page) => mergedPdf.addPage(page));
+                copiedPages.forEach(page => mergedPdf.addPage(page));
+            } catch (err) {
+                console.error(`Error processing file in section "${section}":`, err);
+            }
         }
     }
 
     const mergedPdfBytes = await mergedPdf.save();
-    return URL.createObjectURL(new Blob([mergedPdfBytes], { type: 'application/pdf' }));
+    const blob = new Blob([mergedPdfBytes], { type: 'application/pdf' });
+    return URL.createObjectURL(blob);
 }
-
+// export async function mergePDFSections(filesBySection, sections) {
+//     const formData = new FormData();
+//
+//     sections.forEach(section => {
+//         filesBySection[section].forEach(({ file }) => {
+//             formData.append("files", file); // All files under "files" key
+//         });
+//     });
+//
+//     try {
+//         const response = await axios.post("http://localhost:8080/api/pdf/merge", formData, {
+//             responseType: "blob",
+//         });
+//
+//         const url = URL.createObjectURL(new Blob([response.data], { type: "application/pdf" }));
+//         return url;
+//     } catch (err) {
+//         console.error("Merge error:", err.response?.data || err.message);
+//         return null;
+//     }
+// }

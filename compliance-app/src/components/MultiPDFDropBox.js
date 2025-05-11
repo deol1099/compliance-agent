@@ -1,38 +1,53 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { mergePDFSections } from './MergePDF';
 import './MultiPDFDropBox.css';
 import PDFViewer from './PDFViewer';
-
+import axios from 'axios';
 
 const SECTIONS = [
-        "Client Checklist",
-        "AML - Signed PEP, AML risk assessment form Photo ID",
-        "Client Engagement and WSA",
-        "CB - B1",
-        "CB - B2",
-        "Mortgage Application",
-        "Lender Commitment",
-        "MPP Application",
-        "Indemnification Form",
-        "Income - B1 (LOE, Pay stubs, T4/T1, NOA, Bank Statements, Declared Income, Pension)",
-        "Income - B2",
-        "Down-payment Verification",
-        "MLS and Offer to Purchase",
-        "Owner occupied - mg statement, pty tax, fire insurance",
-        "Rental - mg statement, pty tax (if required) lease.",
-        "Rental Analysis",
-        "Appraisal (if required)",
-        "Bankruptcy, Divorce/Separation Agreement",
-        "Any other supporting docs that may be requested by lender",
+    "Client Checklist",
+    "AML - Signed PEP, AML risk assessment form Photo ID",
+    "Client Engagement and WSA",
+    "CB - B1",
+    "CB - B2",
+    "Mortgage Application",
+    "Lender Commitment",
+    "MPP Application",
+    "Indemnification Form",
+    "Income - B1 (LOE, Pay stubs, T4/T1, NOA, Bank Statements, Declared Income, Pension)",
+    "Income - B2",
+    "Down-payment Verification",
+    "MLS and Offer to Purchase",
+    "Owner occupied - mg statement, pty tax, fire insurance",
+    "Rental - mg statement, pty tax (if required) lease.",
+    "Rental Analysis",
+    "Appraisal (if required)",
+    "Bankruptcy, Divorce/Separation Agreement",
+    "Any other supporting docs that may be requested by lender",
 ];
 
-const PDFDropzone=({ title, files, onFilesChange }) => {
-    const onDrop = useCallback((acceptedFiles) => {
-        const newFiles = acceptedFiles.map(file => ({
-            file,
-            url: URL.createObjectURL(file),
+const PDFDropzone = ({ title, files, onFilesChange }) => {
+    const onDrop = useCallback(async (acceptedFiles) => {
+        const newFiles = await Promise.all(acceptedFiles.map(async (file) => {
+            // Try sending file to backend to check if it's owner-protected and needs decryption
+            try {
+                const formData = new FormData();
+                formData.append('file', file);
+                const response = await axios.post('http://localhost:8080/api/pdf/decrypt', formData, {
+                    responseType: 'blob'
+                });
+
+                const blob = new Blob([response.data], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+
+                return { file: new File([blob], file.name), url };
+            } catch (error) {
+                console.warn(`Skipping decryption for ${file.name}:`, error.response?.data || error.message);
+                return { file, url: URL.createObjectURL(file) };
+            }
         }));
+
         onFilesChange(prev => [...prev, ...newFiles]);
     }, [onFilesChange]);
 
@@ -85,6 +100,16 @@ export function MultiPDFDropBox() {
         }
     };
 
+    const handlePayAndDownload = async () => {
+        try {
+            const response = await axios.post('http://localhost:8080/api/pdf/stripe/create-checkout-session', {
+                mergedPdfUrl: mergedPDFUrl
+            });
+            window.location.href = response.data.checkoutUrl;
+        } catch (err) {
+            console.error('Failed to initiate Stripe session:', err);
+        }
+    };
 
     const updateFilesForSection = (section) => (updater) => {
         setFilesBySection(prev => ({
@@ -92,6 +117,18 @@ export function MultiPDFDropBox() {
             [section]: typeof updater === 'function' ? updater(prev[section] || []) : updater,
         }));
     };
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('payment') === 'success' && mergedPDFUrl) {
+            const link = document.createElement('a');
+            link.href = mergedPDFUrl;
+            link.download = 'merged-document.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    }, [mergedPDFUrl]);
 
     return (
         <div className="container">
@@ -108,7 +145,7 @@ export function MultiPDFDropBox() {
                 <div className="merged-preview">
                     <h3>Merged PDF Preview</h3>
                     <PDFViewer pdfUrl={mergedPDFUrl} />
-                    <div style={{ marginTop: '10px' }}>
+                    <div style={{marginTop: '10px'}}>
                         <a href={mergedPDFUrl} download="merged-document.pdf">
                             <button className="download-btn">Download PDF</button>
                         </a>
@@ -117,4 +154,4 @@ export function MultiPDFDropBox() {
             )}
         </div>
     );
-};
+}

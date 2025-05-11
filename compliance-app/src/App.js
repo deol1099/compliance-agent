@@ -7,6 +7,7 @@ import Features from './components/Features';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import { MultiPDFDropBox } from './components/MultiPDFDropBox';
+import Navbar from "./components/Navbar";
 
 function HomePage() {
     return (
@@ -37,6 +38,7 @@ function App() {
     return (
         <Router>
             <div className="App">
+                <Navbar />
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/compliance-upload" element={<ComplianceUploadPage />} />
