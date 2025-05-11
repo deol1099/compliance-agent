@@ -54,22 +54,28 @@ public class PDFController {
         try {
             // Save uploaded file temporarily
             File inputFile = File.createTempFile("encrypted-", ".pdf");
-            file.transferTo(inputFile);
+            Files.write(inputFile.toPath(), file.getBytes());
 
-            // Decrypt it
+            // Decrypt AND uncompress PDF streams
             File decryptedFile = File.createTempFile("decrypted-", ".pdf");
             ProcessBuilder decryptBuilder = new ProcessBuilder(
-                    "qpdf", "--decrypt", inputFile.getAbsolutePath(), decryptedFile.getAbsolutePath()
+                    "qpdf",
+                    "--decrypt",
+                    "--stream-data=uncompress", // <--- This is the fix
+                    inputFile.getAbsolutePath(),
+                    decryptedFile.getAbsolutePath()
             );
             Process decryptProcess = decryptBuilder.start();
             int exitCode = decryptProcess.waitFor();
 
             inputFile.delete();
 
-            if (exitCode != 0) {
+            if (exitCode != 0 && exitCode != 3) { // Accept exit code 3 too
+                String error = new String(decryptProcess.getErrorStream().readAllBytes());
+                System.err.println("QPDF Decryption Error:\n" + error);
                 return ResponseEntity
                         .status(HttpStatus.BAD_REQUEST)
-                        .body("Failed to decrypt PDF: " + file.getOriginalFilename());
+                        .body("Failed to decrypt PDF: " + file.getOriginalFilename() + "\nQPDF stderr: " + error);
             }
 
             byte[] decryptedBytes = Files.readAllBytes(decryptedFile.toPath());
@@ -85,5 +91,8 @@ public class PDFController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error decrypting PDF.");
         }
     }
+
+
+
 
 }
