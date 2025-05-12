@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d94761a-9570-404b-b572-f3a3b85e45da" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/compliance-app/public/sidebar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compliance-app/src/components/Sidebar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compliance-app/src/components/Sidebar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pdf-Merger/target/classes/com/complianceagent/Pdf/Merger/PdfMergerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/target/classes/com/complianceagent/Pdf/Merger/PdfMergerApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pdf-Merger/target/test-classes/com/complianceagent/Pdf/Merger/PdfMergerApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/target/test-classes/com/complianceagent/Pdf/Merger/PdfMergerApplicationTests.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/0.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/0.pack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/1.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/1.pack" afterDir="false" />
@@ -30,9 +25,10 @@
       <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/9.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/9.pack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/index.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/index.pack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/index.pack.old" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/index.pack.old" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compliance-app/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.css" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/src/components/Sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/Sidebar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/src/components/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/Sidebar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,18 +47,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "deol1099"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;deol1099&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/deol1099/compliance-agent.git",
-    "accountId": "2f3b0d78-c239-4e7a-8cab-8675f6df00b8"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/deol1099/compliance-agent.git&quot;,
+    &quot;accountId&quot;: &quot;2f3b0d78-c239-4e7a-8cab-8675f6df00b8&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -73,6 +69,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -96,6 +93,9 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/compliance-app/public" />
@@ -132,6 +132,7 @@
       <workItem from="1746391380991" duration="987000" />
       <workItem from="1746911887728" duration="6675000" />
       <workItem from="1747029580001" duration="3200000" />
+      <workItem from="1747044154018" duration="3510000" />
     </task>
     <servers />
   </component>

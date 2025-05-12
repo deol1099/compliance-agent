@@ -1,51 +1,86 @@
-sidebar {
+.sidebar {
     position: fixed;
-    left: 0;
     top: 0;
-    height: 100vh;
-    background-color: #0086bf;
+    left: 0;
+
+    width: 250px;
+    height: 100%;
+    background-color: #333;
     color: white;
-    transition: width 0.3s ease;
-    overflow-x: hidden;
+    padding: 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
     z-index: 1000;
 }
 
 .sidebar.open {
-    width: 220px;
+    transform: translateX(0);
 }
 
-.sidebar.collapsed {
-    width: 60px;
+.sidebar.closed {
+    width: 50px;
+    padding: 10px 5px;
 }
 
-.logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 60px;
-    cursor: pointer;
-    padding: 10px;
+.sidebar-content {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding-left: 20px;
+    width: 250px;
 }
 
-.logo {
-    width: 40px;
-    height: 40px;
+.sidebar.open .sidebar-content {
+    opacity: 1;
+    visibility: visible;
 }
 
-.nav-list {
+.sidebar ul {
     list-style: none;
-    padding: 0;
-    margin: 20px 0 0 10px;
+    /*padding: 0;*/
+    align-items: center;
+    width: 100%;
+    right: 0;
+    margin-top: 20px;
 }
 
-.nav-item {
-    margin: 10px 0;
-    cursor: pointer;
-    padding: 8px 10px;
+.sidebar li {
+    right: 0;
+    padding: 3px;
+    transition: 0.3s;
+}
+.sidebar li:hover {
+    color: #ea795a;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+}
+
+.toggle-btn {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 6px 10px;
     border-radius: 4px;
-    transition: background-color 0.2s;
+    cursor: pointer;
+}
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 100px;
+    background: bisque;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+
+    z-index: 100; /* Ensure the close button is on top of other elements */
 }
 
-.nav-item:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+
+.close-btn:hover {
+    color: #ff4d4d;
 }

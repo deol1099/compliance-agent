@@ -3,8 +3,8 @@ import { useDropzone } from 'react-dropzone';
 import { mergePDFSections } from './MergePDF';
 import './MultiPDFDropBox.css';
 import PDFViewer from './PDFViewer';
-import Sidebar from './Sidebar';
 import axios from 'axios';
+import Sidebar from './Sidebar';
 
 const SECTIONS = [
     "Client Checklist",
@@ -28,9 +28,12 @@ const SECTIONS = [
     "Any other supporting docs that may be requested by lender",
 ];
 
-const PDFDropzone = ({ title, files, onFilesChange }) => {
+
+const PDFDropzone = ({ title, files, onFilesChange, id }) => {
+
     const onDrop = useCallback(async (acceptedFiles) => {
         const newFiles = await Promise.all(acceptedFiles.map(async (file) => {
+            // Try sending file to backend to check if it's owner-protected and needs decryption
             try {
                 const formData = new FormData();
                 formData.append('file', file);
@@ -43,7 +46,7 @@ const PDFDropzone = ({ title, files, onFilesChange }) => {
 
                 return { file: new File([blob], file.name), url };
             } catch (error) {
-                console.warn(`Skipping decryption for ${file.name}:`, error.response?.data || error.message);
+                console.warn("Skipping decryption for ${file.name}:", error.response?.data || error.message);
                 return { file, url: URL.createObjectURL(file) };
             }
         }));
@@ -62,8 +65,9 @@ const PDFDropzone = ({ title, files, onFilesChange }) => {
         onFilesChange(prev => prev.filter((_, i) => i !== index));
     };
 
+
     return (
-        <div className="dropzone-section">
+        <div id={id} className="dropzone-section">
             <h3 className="dropzone-title">{title}</h3>
             <div {...getRootProps()} className={`dropzone-box ${isDragActive ? 'active' : ''}`}>
                 <input {...getInputProps()} />
@@ -72,7 +76,7 @@ const PDFDropzone = ({ title, files, onFilesChange }) => {
             <div className="pdf-preview-grid">
                 {files.map((pdf, idx) => (
                     <div key={idx} className="pdf-preview-item">
-                        <iframe src={pdf.url} title={`${title}-pdf-${idx}`} width="100%" height="200" />
+                        <iframe src={pdf.url} title={"${title}-pdf-${idx}"} width="100%" height="200" />
                         <button className="delete-btn" onClick={() => removeFile(idx)}>✕</button>
                     </div>
                 ))}
@@ -86,7 +90,6 @@ export function MultiPDFDropBox() {
         Object.fromEntries(SECTIONS.map(section => [section, []]))
     );
     const [mergedPDFUrl, setMergedPDFUrl] = useState(null);
-    const [sidebarOpen, setSidebarOpen] = useState(true);
 
     const handleMerge = async () => {
         try {
@@ -130,38 +133,49 @@ export function MultiPDFDropBox() {
             document.body.removeChild(link);
         }
     }, [mergedPDFUrl]);
+    const [sidebarOpen, setSidebarOpen] = useState(true);
+
+    const toggleSidebar = () => {
+        setSidebarOpen(prev => !prev);
+    };
 
     return (
-        <div className="wrapper">
-            <Sidebar
-                sections={SECTIONS}
-                isOpen={sidebarOpen}
-                toggleSidebar={() => setSidebarOpen(prev => !prev)}
-            />
+        <>
+        <button className="toggle-btn" onClick={toggleSidebar}>
+            ☰
+        </button>
 
-            <main className="main-content">
+        {sidebarOpen && (
+            <div className="backdrop" onClick={toggleSidebar}></div>
+        )}
+
+        <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
+            <Sidebar sections={SECTIONS} />
+        </div>
+
+        <div className="container">
                 {SECTIONS.map(section => (
-                    <div key={section} id={section.replace(/\s+/g, '-')} className="dropzone-wrapper">
-                        <PDFDropzone
-                            title={section}
-                            files={filesBySection[section]}
-                            onFilesChange={updateFilesForSection(section)}
-                        />
-                    </div>
+                    <PDFDropzone
+                        key={section}
+                        title={section}
+                        files={filesBySection[section]}
+                        onFilesChange={updateFilesForSection(section)}
+                        id={section.replace(/\s+/g, '-').toLowerCase()}
+                    />
                 ))}
                 <button className="preview-btn" onClick={handleMerge}>Preview All PDFs</button>
                 {mergedPDFUrl && (
                     <div className="merged-preview">
                         <h3>Merged PDF Preview</h3>
-                        <PDFViewer pdfUrl={mergedPDFUrl} />
-                        <div style={{ marginTop: '10px' }}>
+                        <PDFViewer pdfUrl={mergedPDFUrl}/>
+                        <div style={{marginTop: '10px'}}>
                             <a href={mergedPDFUrl} download="merged-document.pdf">
                                 <button className="download-btn">Download PDF</button>
                             </a>
                         </div>
                     </div>
                 )}
-            </main>
-        </div>
-    );
-}
+            </div>
+        </>
+            );
+            }
