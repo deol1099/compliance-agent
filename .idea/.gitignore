@@ -7,3 +7,7 @@
 #/dataSources/
 #/dataSources.local.xml
 src/main/resources/application.properties
+# Ignore build output
+**/target/
+*.class
+.idea/
