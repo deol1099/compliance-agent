@@ -1,0 +1,51 @@
+sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    background-color: #0086bf;
+    color: white;
+    transition: width 0.3s ease;
+    overflow-x: hidden;
+    z-index: 1000;
+}
+
+.sidebar.open {
+    width: 220px;
+}
+
+.sidebar.collapsed {
+    width: 60px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 10px;
+}
+
+.nav-item {
+    margin: 10px 0;
+    cursor: pointer;
+    padding: 8px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}

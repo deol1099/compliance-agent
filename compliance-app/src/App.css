@@ -1,6 +1,5 @@
 body {
   font-family: Arial, sans-serif;
-  /*background: #fff8f0;*/
   background-color: #fbf0df;
   color: #333;
   margin: 0;
@@ -11,7 +10,7 @@ body {
 /*  border-bottom: 1px solid #ccc;*/
 /*}*/
 .merge-button {
-  background-color: #d56a23;
+  background-color: #0086bf;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -34,7 +33,7 @@ button:hover {
   padding: 0;
 }
 .socials a {
-  color: #d35400;
+  color: #0086bf;
   margin-right: 15px;
   text-decoration: none;
 }

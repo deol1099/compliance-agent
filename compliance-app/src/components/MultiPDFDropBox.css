@@ -85,3 +85,14 @@
 .merged-preview {
     margin-top: 20px;
 }
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.wrapper {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}

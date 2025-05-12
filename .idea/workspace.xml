@@ -5,11 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d94761a-9570-404b-b572-f3a3b85e45da" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/compliance-app/public/sidebar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/compliance-app/src/components/Sidebar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/compliance-app/src/components/Sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PDFController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PDFController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/target/classes/com/complianceagent/Pdf/Merger/PdfMergerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/target/classes/com/complianceagent/Pdf/Merger/PdfMergerApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/target/test-classes/com/complianceagent/Pdf/Merger/PdfMergerApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/target/test-classes/com/complianceagent/Pdf/Merger/PdfMergerApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/0.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/0.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/1.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/1.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/10.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/10.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/11.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/11.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/12.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/12.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/13.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/13.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/14.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/14.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/2.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/2.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/3.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/3.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/4.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/4.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/5.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/5.pack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/6.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/6.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/7.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/7.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/8.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/8.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/9.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/9.pack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/index.pack" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/index.pack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/index.pack.old" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/node_modules/.cache/default-development/index.pack.old" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.css" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,14 +43,26 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "deol1099"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/deol1099/compliance-agent.git",
+    "accountId": "2f3b0d78-c239-4e7a-8cab-8675f6df00b8"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -96,6 +131,7 @@
       <workItem from="1746327730590" duration="7791000" />
       <workItem from="1746391380991" duration="987000" />
       <workItem from="1746911887728" duration="6675000" />
+      <workItem from="1747029580001" duration="3200000" />
     </task>
     <servers />
   </component>

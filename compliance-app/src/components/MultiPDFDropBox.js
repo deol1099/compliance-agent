@@ -3,6 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import { mergePDFSections } from './MergePDF';
 import './MultiPDFDropBox.css';
 import PDFViewer from './PDFViewer';
+import Sidebar from './Sidebar';
 import axios from 'axios';
 
 const SECTIONS = [
@@ -30,7 +31,6 @@ const SECTIONS = [
 const PDFDropzone = ({ title, files, onFilesChange }) => {
     const onDrop = useCallback(async (acceptedFiles) => {
         const newFiles = await Promise.all(acceptedFiles.map(async (file) => {
-            // Try sending file to backend to check if it's owner-protected and needs decryption
             try {
                 const formData = new FormData();
                 formData.append('file', file);
@@ -86,6 +86,7 @@ export function MultiPDFDropBox() {
         Object.fromEntries(SECTIONS.map(section => [section, []]))
     );
     const [mergedPDFUrl, setMergedPDFUrl] = useState(null);
+    const [sidebarOpen, setSidebarOpen] = useState(true);
 
     const handleMerge = async () => {
         try {
@@ -131,27 +132,36 @@ export function MultiPDFDropBox() {
     }, [mergedPDFUrl]);
 
     return (
-        <div className="container">
-            {SECTIONS.map(section => (
-                <PDFDropzone
-                    key={section}
-                    title={section}
-                    files={filesBySection[section]}
-                    onFilesChange={updateFilesForSection(section)}
-                />
-            ))}
-            <button className="preview-btn" onClick={handleMerge}>Preview All PDFs</button>
-            {mergedPDFUrl && (
-                <div className="merged-preview">
-                    <h3>Merged PDF Preview</h3>
-                    <PDFViewer pdfUrl={mergedPDFUrl} />
-                    <div style={{marginTop: '10px'}}>
-                        <a href={mergedPDFUrl} download="merged-document.pdf">
-                            <button className="download-btn">Download PDF</button>
-                        </a>
+        <div className="wrapper">
+            <Sidebar
+                sections={SECTIONS}
+                isOpen={sidebarOpen}
+                toggleSidebar={() => setSidebarOpen(prev => !prev)}
+            />
+
+            <main className="main-content">
+                {SECTIONS.map(section => (
+                    <div key={section} id={section.replace(/\s+/g, '-')} className="dropzone-wrapper">
+                        <PDFDropzone
+                            title={section}
+                            files={filesBySection[section]}
+                            onFilesChange={updateFilesForSection(section)}
+                        />
                     </div>
-                </div>
-            )}
+                ))}
+                <button className="preview-btn" onClick={handleMerge}>Preview All PDFs</button>
+                {mergedPDFUrl && (
+                    <div className="merged-preview">
+                        <h3>Merged PDF Preview</h3>
+                        <PDFViewer pdfUrl={mergedPDFUrl} />
+                        <div style={{ marginTop: '10px' }}>
+                            <a href={mergedPDFUrl} download="merged-document.pdf">
+                                <button className="download-btn">Download PDF</button>
+                            </a>
+                        </div>
+                    </div>
+                )}
+            </main>
         </div>
     );
 }
