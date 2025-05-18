@@ -166,7 +166,6 @@ export function MultiPDFDropBox() {
                 <button className="preview-btn" onClick={handleMerge}>Preview All PDFs</button>
                 {mergedPDFUrl && (
                     <div className="merged-preview">
-                        <h3>Merged PDF Preview</h3>
                         <PDFViewer pdfUrl={mergedPDFUrl}/>
                         <div style={{marginTop: '10px'}}>
                             <a href={mergedPDFUrl} download="merged-document.pdf">

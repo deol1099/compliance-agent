@@ -2,15 +2,20 @@
     position: fixed;
     top: 0;
     left: 0;
-
     width: 250px;
     height: 100%;
-    background-color: #333;
-    color: white;
+    background-color: #ffffff;
+    color: #000000;
     padding: 20px;
     transform: translateX(-100%);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease;
     z-index: 1000;
+}
+
+/* Hover effect for the sidebar */
+.sidebar:hover {
+    background-color: #f0f0f0; /* Light grey background on hover */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar.open {
@@ -37,7 +42,6 @@
 
 .sidebar ul {
     list-style: none;
-    /*padding: 0;*/
     align-items: center;
     width: 100%;
     right: 0;
@@ -49,14 +53,27 @@
     padding: 3px;
     transition: 0.3s;
 }
+
 .sidebar li:hover {
     color: #ea795a;
 }
 
+/* Link base styling */
 .sidebar a {
     text-decoration: none;
-    color: #fff;
-    font-size: 14px;
+    color: #0e0e0e;
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect for links */
+.sidebar a:hover {
+    background-color: #ddd;
+    color: #000;
 }
 
 .toggle-btn {
@@ -67,6 +84,7 @@
     border-radius: 4px;
     cursor: pointer;
 }
+
 .close-btn {
     position: absolute;
     top: 10px;
@@ -76,10 +94,8 @@
     color: white;
     font-size: 24px;
     cursor: pointer;
-
     z-index: 100; /* Ensure the close button is on top of other elements */
 }
-
 
 .close-btn:hover {
     color: #ff4d4d;

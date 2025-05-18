@@ -35,6 +35,7 @@
 
 .pdf-preview-item {
     width: 20%;
+    height: 20%;
     position: relative;
     border: 1px solid #ddd;
     border-radius: 6px;
@@ -58,7 +59,7 @@
 }
 
 .preview-btn {
-    margin-top: 30px;
+    margin: 30px auto 0; /* top margin, auto left/right, no bottom margin */
     padding: 10px 20px;
     font-size: 16px;
     background-color: #4caf50;
@@ -66,17 +67,22 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    display: block; /* ensures margin auto works as expected */
 }
+
 .download-btn {
-    background-color: #4CAF50;
+    margin: 30px auto 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4caf50;
     color: white;
-    padding: 10px 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-weight: bold;
+    display: block;
     transition: background-color 0.3s ease;
 }
+
 
 .download-btn:hover {
     background-color: #45a049;
@@ -84,6 +90,10 @@
 
 .merged-preview {
     margin-top: 20px;
+    width: 120%;
+    position: relative;
+    left: 81%;
+    transform: translateX(-50%);
 }
 
 .container {
