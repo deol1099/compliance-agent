@@ -17,9 +17,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="Class" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -38,9 +38,6 @@
     &quot;accountId&quot;: &quot;2f3b0d78-c239-4e7a-8cab-8675f6df00b8&quot;
   }
 }</component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -80,7 +77,6 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Pdf-Merger/src/main/resources" />
       <recent name="$PROJECT_DIR$/compliance-app/public" />
     </key>
   </component>
@@ -97,8 +93,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
       </set>
     </attachedChunks>
   </component>
@@ -116,89 +112,10 @@
       <workItem from="1746911887728" duration="6675000" />
       <workItem from="1747029580001" duration="3200000" />
       <workItem from="1747044154018" duration="3510000" />
-      <workItem from="1747256703375" duration="661000" />
-      <workItem from="1747257461565" duration="3122000" />
-      <workItem from="1747325702604" duration="2165000" />
-      <workItem from="1747343328218" duration="9000" />
-      <workItem from="1747343717183" duration="7614000" />
-      <workItem from="1748241607077" duration="1142000" />
-      <workItem from="1748242819228" duration="51000" />
-      <workItem from="1748298554543" duration="1084000" />
-      <workItem from="1748319207084" duration="5228000" />
-      <workItem from="1748334650824" duration="3340000" />
-      <workItem from="1748467488278" duration="4400000" />
-      <workItem from="1748492386854" duration="2903000" />
-      <workItem from="1748548538622" duration="9613000" />
     </task>
-    <task id="LOCAL-00001" summary="Sidebar UI">
-      <option name="closed" value="true" />
-      <created>1747595741700</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1747595741701</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Fill form">
-      <option name="closed" value="true" />
-      <created>1748242743114</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1748242743114</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Fill form">
-      <option name="closed" value="true" />
-      <created>1748327550704</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1748327550704</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Fill form">
-      <option name="closed" value="true" />
-      <created>1748328501303</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1748328501303</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Fill form">
-      <option name="closed" value="true" />
-      <created>1748328511251</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1748328511251</updated>
-    </task>
-    <task id="LOCAL-00006" summary="New Changes">
-      <option name="closed" value="true" />
-      <created>1748636973834</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1748636973835</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Sidebar UI" />
-    <MESSAGE value="Fill form" />
-    <MESSAGE value="New Changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="New Changes" />
   </component>
 </project>
