@@ -4,21 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d94761a-9570-404b-b572-f3a3b85e45da" name="Changes" comment="Fill form">
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/CompressPDF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="2d94761a-9570-404b-b572-f3a3b85e45da" name="Changes" comment="New Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PDFController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PDFController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PdfFormController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PdfMergerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PdfMergerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/AB-Checklist.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/compliance-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compliance-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compliance-app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compliance-app/src/components/FillForm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/compliance-app/src/components/MergePDF.js" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/MergePDF.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.css" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/target/classes/com/complianceagent/Pdf/Merger/PDFController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/target/classes/com/complianceagent/Pdf/Merger/PDFController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/target/classes/com/complianceagent/Pdf/Merger/PdfMergerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/target/classes/com/complianceagent/Pdf/Merger/PdfMergerApplication.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +128,7 @@
       <workItem from="1748334650824" duration="3340000" />
       <workItem from="1748467488278" duration="4400000" />
       <workItem from="1748492386854" duration="2903000" />
-      <workItem from="1748548538622" duration="8598000" />
+      <workItem from="1748548538622" duration="9613000" />
     </task>
     <task id="LOCAL-00001" summary="Sidebar UI">
       <option name="closed" value="true" />
@@ -181,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748328511251</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="New Changes">
+      <option name="closed" value="true" />
+      <created>1748636973834</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1748636973835</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,6 +198,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Sidebar UI" />
     <MESSAGE value="Fill form" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fill form" />
+    <MESSAGE value="New Changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="New Changes" />
   </component>
 </project>
