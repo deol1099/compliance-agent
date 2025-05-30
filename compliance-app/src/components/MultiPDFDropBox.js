@@ -1,10 +1,27 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { v4 as uuidv4 } from 'uuid';
 import { mergePDFSections } from './MergePDF';
 import './MultiPDFDropBox.css';
 import PDFViewer from './PDFViewer';
 import axios from 'axios';
 import Sidebar from './Sidebar';
+import { PDFDocument, rgb } from 'pdf-lib';
+import {
+    DndContext,
+    closestCenter,
+    useSensor,
+    useSensors,
+    PointerSensor,
+} from '@dnd-kit/core';
+import {
+    arrayMove,
+    SortableContext,
+    useSortable,
+    horizontalListSortingStrategy,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+
 
 const SECTIONS = [
     "Client Checklist",
@@ -27,44 +44,123 @@ const SECTIONS = [
     "Bankruptcy, Divorce/Separation Agreement",
     "Any other supporting docs that may be requested by lender",
 ];
+function SortablePDF({ pdf, onRemove }) {
+    const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: pdf.id });
+
+    const style = {
+        transform: CSS.Transform.toString(transform),
+        transition,
+        pointerEvents: isDragging ? 'none' : 'auto'
+    };
+
+    return (
+        <div ref={setNodeRef} className="sortable-pdf" style={style} {...listeners} {...attributes}>
+            <iframe
+                src={pdf.url}
+                title={pdf.file.name}
+                width="100%"
+                height="200"
+                className="pdf-iframe"
+            />
+            <button className="remove-btn" onClick={() => onRemove(pdf.id)}>Remove</button>
+        </div>
+    );
+}
 
 
 const PDFDropzone = ({ title, files, onFilesChange, id }) => {
+    const sensors = useSensors(useSensor(PointerSensor));
 
     const onDrop = useCallback(async (acceptedFiles) => {
         const newFiles = await Promise.all(acceptedFiles.map(async (file) => {
-            // Try sending file to backend to check if it's owner-protected and needs decryption
+            let processedFile = file;
+
+            // Convert image to PDF
+            if (file.type.startsWith('image/')) {
+                try {
+                    const imgBytes = await file.arrayBuffer();
+                    const pdfDoc = await PDFDocument.create();
+                    let image;
+
+                    if (file.type === 'image/jpeg') {
+                        image = await pdfDoc.embedJpg(imgBytes);
+                    } else {
+                        image = await pdfDoc.embedPng(imgBytes);
+                    }
+
+                    const page = pdfDoc.addPage([image.width, image.height]);
+                    page.drawImage(image, {
+                        x: 0,
+                        y: 0,
+                        width: image.width,
+                        height: image.height,
+                    });
+
+                    const pdfBytes = await pdfDoc.save();
+                    processedFile = new File([pdfBytes], file.name.replace(/\.(png|jpg|jpeg)$/i, '.pdf'), {
+                        type: 'application/pdf',
+                    });
+                } catch (err) {
+                    console.error(`Error converting image to PDF for ${file.name}`, err);
+                    return null;
+                }
+            }
+
             try {
                 const formData = new FormData();
-                formData.append('file', file);
-                const response = await axios.post('http://localhost:8080/api/pdf/decrypt', formData, {
-                    responseType: 'blob'
+                formData.append('file', processedFile);
+                const { data } = await axios.post('http://localhost:8080/api/pdf/decrypt', formData, {
+                    responseType: 'blob',
                 });
-
-                const blob = new Blob([response.data], { type: 'application/pdf' });
-                const url = URL.createObjectURL(blob);
-
-                return { file: new File([blob], file.name), url };
+                const blob = new Blob([data], { type: 'application/pdf' });
+                return {
+                    id: uuidv4(),
+                    file: new File([blob], processedFile.name),
+                    url: URL.createObjectURL(blob),
+                };
             } catch (error) {
-                console.warn("Skipping decryption for ${file.name}:", error.response?.data || error.message);
-                return { file, url: URL.createObjectURL(file) };
+                console.warn(`Skipping decryption for ${processedFile.name}:`, error.response?.data || error.message);
+                return {
+                    id: uuidv4(),
+                    file: processedFile,
+                    url: URL.createObjectURL(processedFile),
+                };
             }
         }));
 
-        onFilesChange(prev => [...prev, ...newFiles]);
+        onFilesChange((prev) => [...prev, ...newFiles.filter(f => f !== null)]);
     }, [onFilesChange]);
+
+    const removeFile = useCallback((id) => {
+        onFilesChange(prevFiles => {
+            const fileToRemove = prevFiles.find(f => f.id === id);
+            if (fileToRemove) {
+                URL.revokeObjectURL(fileToRemove.url);
+            }
+            console.log("Removing file with id:", id);
+            return prevFiles.filter(f => f.id !== id);
+        });
+    }, [onFilesChange]);
+
+
+    const handleDragEnd = ({ active, over }) => {
+        if (!over || active.id === over.id) return;
+        const oldIndex = files.findIndex(f => f.id === active.id);
+        const newIndex = files.findIndex(f => f.id === over.id);
+        if (oldIndex !== -1 && newIndex !== -1) {
+            onFilesChange(arrayMove(files, oldIndex, newIndex));
+        }
+    };
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
-        accept: { 'application/pdf': ['.pdf'] },
-        multiple: true,
+        accept: {
+            'application/pdf': ['.pdf'],
+            'image/jpeg': ['.jpeg', '.jpg'],
+            'image/png': ['.png'],
+        },
+        multiple: true
     });
-
-    const removeFile = (index) => {
-        URL.revokeObjectURL(files[index].url);
-        onFilesChange(prev => prev.filter((_, i) => i !== index));
-    };
-
 
     return (
         <div id={id} className="dropzone-section">
@@ -73,17 +169,19 @@ const PDFDropzone = ({ title, files, onFilesChange, id }) => {
                 <input {...getInputProps()} />
                 <p>{isDragActive ? "Drop PDFs here..." : "Drag & drop or click to select PDFs"}</p>
             </div>
-            <div className="pdf-preview-grid">
-                {files.map((pdf, idx) => (
-                    <div key={idx} className="pdf-preview-item">
-                        <iframe src={pdf.url} title={"${title}-pdf-${idx}"} width="100%" height="200" />
-                        <button className="delete-btn" onClick={() => removeFile(idx)}>✕</button>
+            <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+                <SortableContext items={files.map(f => f.id)} strategy={horizontalListSortingStrategy}>
+                    <div className="sortable-container">
+                        {files.map((pdf) => (
+                            <SortablePDF key={pdf.id} pdf={pdf} onRemove={removeFile} />
+                        ))}
                     </div>
-                ))}
-            </div>
+                </SortableContext>
+            </DndContext>
         </div>
     );
 };
+
 
 export function MultiPDFDropBox() {
     const [filesBySection, setFilesBySection] = useState(() =>
@@ -93,14 +191,39 @@ export function MultiPDFDropBox() {
 
     const handleMerge = async () => {
         try {
-            const url = await mergePDFSections(filesBySection, SECTIONS);
-            if (url) {
-                setMergedPDFUrl(url);
-            } else {
+            // Step 1: Merge PDFs client-side, result is a Blob
+            const mergedBlob = await mergePDFSections(filesBySection, SECTIONS);
+            if (!mergedBlob) {
                 console.error('Failed to merge PDFs.');
+                return;
             }
+
+            // Step 2: Check size
+            const sizeMB = mergedBlob.size / (1024 * 1024);
+            let finalBlob = mergedBlob;
+
+            if (sizeMB > 50) {
+                console.log(`Merged PDF is ${sizeMB.toFixed(2)} MB. Sending for compression...`);
+
+                // Step 3: Send to backend for compression
+                const formData = new FormData();
+                formData.append("file", mergedBlob, "merged.pdf");
+
+                const response = await axios.post("http://localhost:8080/api/pdf/compress", formData, {
+                    responseType: 'blob',
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    }
+                });
+
+                finalBlob = response.data;
+            }
+
+            // Step 4: Convert final Blob to URL for preview
+            const url = URL.createObjectURL(finalBlob);
+            setMergedPDFUrl(url);
         } catch (error) {
-            console.error('Error merging PDFs:', error);
+            console.error("Error merging or compressing PDFs:", error);
         }
     };
 
@@ -133,7 +256,7 @@ export function MultiPDFDropBox() {
             document.body.removeChild(link);
         }
     }, [mergedPDFUrl]);
-    const [sidebarOpen, setSidebarOpen] = useState(true);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const toggleSidebar = () => {
         setSidebarOpen(prev => !prev);

@@ -1,5 +1,7 @@
 import { PDFDocument } from 'pdf-lib';
-import axios from 'axios';
+
+const MAX_PDF_SIZE_BYTES = 50 * 1024 * 1024; // 50MB
+
 export async function mergePDFSections(filesBySection, sectionOrder) {
     const mergedPdf = await PDFDocument.create();
 
@@ -19,27 +21,35 @@ export async function mergePDFSections(filesBySection, sectionOrder) {
     }
 
     const mergedPdfBytes = await mergedPdf.save();
+
+    if (mergedPdfBytes.length > MAX_PDF_SIZE_BYTES) {
+        console.warn('Merged PDF exceeds 50MB. Attempting compression via backend...');
+
+        const formData = new FormData();
+        formData.append(
+            'file',
+            new Blob([mergedPdfBytes], { type: 'application/pdf' }),
+            'merged.pdf'
+        );
+
+        try {
+            const response = await fetch('/api/pdf/compress', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error('Compression failed or PDF still too large');
+            }
+
+            const compressedBlob = await response.blob();
+            return URL.createObjectURL(compressedBlob);
+        } catch (err) {
+            console.error('Compression error:', err);
+            throw new Error('Failed to compress PDF');
+        }
+    }
+
     const blob = new Blob([mergedPdfBytes], { type: 'application/pdf' });
     return URL.createObjectURL(blob);
 }
-// export async function mergePDFSections(filesBySection, sections) {
-//     const formData = new FormData();
-//
-//     sections.forEach(section => {
-//         filesBySection[section].forEach(({ file }) => {
-//             formData.append("files", file); // All files under "files" key
-//         });
-//     });
-//
-//     try {
-//         const response = await axios.post("http://localhost:8080/api/pdf/merge", formData, {
-//             responseType: "blob",
-//         });
-//
-//         const url = URL.createObjectURL(new Blob([response.data], { type: "application/pdf" }));
-//         return url;
-//     } catch (err) {
-//         console.error("Merge error:", err.response?.data || err.message);
-//         return null;
-//     }
-// }

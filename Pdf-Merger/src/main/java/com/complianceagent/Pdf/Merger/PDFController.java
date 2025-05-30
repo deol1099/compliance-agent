@@ -9,16 +9,27 @@ import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
 import java.util.HashMap;
 
-import java.io.*;
+
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+
+
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/pdf")
 public class PDFController {
+    @Autowired
+    private CompressPDF compressorService;
+
     @PostMapping("/stripe/create-checkout-session")
     public ResponseEntity<Map<String, String>> createCheckoutSession(@RequestBody Map<String, String> payload) {
 //        Stripe.apiKey = System.getenv("STRIPE_SECRET_KEY");
@@ -92,7 +103,25 @@ public class PDFController {
         }
     }
 
+    @PostMapping("/compress")
+    public ResponseEntity<byte[]> compress(@RequestParam("file") MultipartFile file) throws Exception {
+        File tempInput = File.createTempFile("uploaded_", ".pdf");
 
+        try (FileOutputStream out = new FileOutputStream(tempInput);
+             InputStream in = file.getInputStream()) {
+            in.transferTo(out);
+        }
 
+        File compressed = compressorService.compressPdf(tempInput);
+        byte[] compressedBytes = java.nio.file.Files.readAllBytes(compressed.toPath());
 
+        if (compressedBytes.length > 50 * 1024 * 1024) {
+            return ResponseEntity.badRequest().body("Compressed PDF still exceeds 50MB".getBytes());
+        }
+
+        return ResponseEntity.ok()
+                .header("Content-Type", "application/pdf")
+                .header("Content-Disposition", "attachment; filename=compressed.pdf")
+                .body(compressedBytes);
+    }
 }

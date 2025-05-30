@@ -6,9 +6,8 @@ import Hero from './components/Hero';
 import Features from './components/Features';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
-import { MultiPDFDropBox } from './components/MultiPDFDropBox';
+import  { MultiPDFDropBox } from './components/MultiPDFDropBox';
 import Navbar from "./components/Navbar";
-import FillForm from './components/FillForm';
 
 function HomePage() {
     return (
@@ -30,15 +29,6 @@ function ComplianceUploadPage() {
     );
 }
 
-function FillFormPage() {
-    return (
-        <div style={{ padding: '20px' }}>
-            <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Fill & Merge AB Checklist</h2>
-            <FillForm />
-        </div>
-    );
-}
-
 function App() {
     return (
         <Router>
@@ -47,7 +37,6 @@ function App() {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/compliance-upload" element={<ComplianceUploadPage />} />
-                    <Route path="/fill-form" element={<FillFormPage />} />
                 </Routes>
             </div>
         </Router>

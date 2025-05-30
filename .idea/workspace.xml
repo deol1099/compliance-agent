@@ -5,14 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d94761a-9570-404b-b572-f3a3b85e45da" name="Changes" comment="Fill form">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-05-08,_12_14 p_m__[Changes]/0.pack" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-05-08,_12_14 p_m__[Changes]/1.pack" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-05-08,_12_14 p_m__[Changes]/2.pack" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-05-08,_12_14 p_m__[Changes]/index.pack" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-05-08,_12_14 p_m__[Changes]/index.pack.old" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-05-08,_12_14 p_m__[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025-05-08__12_14p_m___Changes_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/CompressPDF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PDFController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PDFController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PdfFormController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PdfMergerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PdfMergerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/AB-Checklist.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/src/components/FillForm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/src/components/MergePDF.js" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/MergePDF.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.css" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +135,11 @@
       <workItem from="1748241607077" duration="1142000" />
       <workItem from="1748242819228" duration="51000" />
       <workItem from="1748298554543" duration="1084000" />
-      <workItem from="1748319207084" duration="4670000" />
+      <workItem from="1748319207084" duration="5228000" />
+      <workItem from="1748334650824" duration="3340000" />
+      <workItem from="1748467488278" duration="4400000" />
+      <workItem from="1748492386854" duration="2903000" />
+      <workItem from="1748548538622" duration="8598000" />
     </task>
     <task id="LOCAL-00001" summary="Sidebar UI">
       <option name="closed" value="true" />
@@ -155,7 +165,23 @@
       <option name="project" value="LOCAL" />
       <updated>1748327550704</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fill form">
+      <option name="closed" value="true" />
+      <created>1748328501303</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1748328501303</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fill form">
+      <option name="closed" value="true" />
+      <created>1748328511251</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1748328511251</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
