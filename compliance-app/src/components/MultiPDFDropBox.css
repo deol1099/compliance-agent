@@ -85,11 +85,14 @@
 
 /* === Merged Preview === */
 .merged-preview {
-    margin-top: 1.5rem;
-    max-width: 100%;
+    margin: 2rem auto 0;
+    max-width: 90vw;
     width: 100%;
     position: relative;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* === Backdrop === */
@@ -97,7 +100,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 200%;
     height: 100%;
     background-color: rgba(0,0,0,0.4);
     z-index: 999;

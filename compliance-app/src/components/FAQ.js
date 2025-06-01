@@ -4,12 +4,12 @@ import './FAQ.css';
 const FAQ = () => {
     const faqs = [
         {
-            question: "What types of PDF files can I merge?",
-            answer: "You can merge any mortgage-related PDF documents such as disclosures, loan estimates, and compliance checklists.",
+            question: "What types of files can I merge?",
+            answer: "You can merge any mortgage-related PDF, JPEG, and PNG files such as disclosures, loan estimates, and compliance checklists.",
         },
         {
             question: "Do I need a Dropbox account?",
-            answer: "Yes, you’ll need to provide Dropbox links to the PDF files you want to merge.",
+            answer: "No, you don't need to provide Dropbox links to the PDF files you want to merge.",
         },
         {
             question: "Is my data secure?",

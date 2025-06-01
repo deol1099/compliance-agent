@@ -13,8 +13,9 @@ const Features = () => (
                 </li>
                 <li>
                     <div>
-                        <strong>📦 Dropbox Integration</strong>
-                        <p>Secure and seamless file handling.</p>
+                        <strong>📄 Smart File Handling</strong>
+                        <p>Drop PDFs, JPEGs, or PNGs — our system automatically converts images into PDFs.</p>
+
                     </div>
                 </li>
                 <li>

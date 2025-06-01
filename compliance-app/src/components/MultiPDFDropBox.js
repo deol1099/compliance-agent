@@ -44,6 +44,7 @@ const SECTIONS = [
     "Bankruptcy, Divorce/Separation Agreement",
     "Any other supporting docs that may be requested by lender",
 ];
+
 function SortablePDF({ pdf, onRemove }) {
     const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: pdf.id });
 
@@ -68,7 +69,7 @@ function SortablePDF({ pdf, onRemove }) {
 }
 
 
-const PDFDropzone = ({ title, files, onFilesChange, id }) => {
+const PDFDropzone = ({ title, files, onFilesChange, id, section }) => {
     const sensors = useSensors(useSensor(PointerSensor));
 
     const onDrop = useCallback(async (acceptedFiles) => {
@@ -133,12 +134,14 @@ const PDFDropzone = ({ title, files, onFilesChange, id }) => {
 
     const removeFile = useCallback((id) => {
         onFilesChange(prevFiles => {
-            const fileToRemove = prevFiles.find(f => f.id === id);
-            if (fileToRemove) {
-                URL.revokeObjectURL(fileToRemove.url);
-            }
-            console.log("Removing file with id:", id);
-            return prevFiles.filter(f => f.id !== id);
+            const updatedFiles = prevFiles.filter(f => {
+                const keep = f.id !== id;
+                if (!keep) {
+                    URL.revokeObjectURL(f.url);
+                }
+                return keep;
+            });
+            return updatedFiles;
         });
     }, [onFilesChange]);
 
@@ -193,6 +196,7 @@ export function MultiPDFDropBox() {
         try {
             // Step 1: Merge PDFs client-side, result is a Blob
             const mergedBlob = await mergePDFSections(filesBySection, SECTIONS);
+            console.log("Merged Blob:", mergedBlob);  // NEW LINE
             if (!mergedBlob) {
                 console.error('Failed to merge PDFs.');
                 return;
@@ -221,6 +225,7 @@ export function MultiPDFDropBox() {
 
             // Step 4: Convert final Blob to URL for preview
             const url = URL.createObjectURL(finalBlob);
+            console.log("Merged PDF URL:", url);  // Add this
             setMergedPDFUrl(url);
         } catch (error) {
             console.error("Error merging or compressing PDFs:", error);
@@ -280,6 +285,7 @@ export function MultiPDFDropBox() {
                 {SECTIONS.map(section => (
                     <PDFDropzone
                         key={section}
+                        section={section}
                         title={section}
                         files={filesBySection[section]}
                         onFilesChange={updateFilesForSection(section)}
