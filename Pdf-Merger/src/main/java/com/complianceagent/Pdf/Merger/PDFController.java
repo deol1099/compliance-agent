@@ -106,22 +106,35 @@ public class PDFController {
     @PostMapping("/compress")
     public ResponseEntity<byte[]> compress(@RequestParam("file") MultipartFile file) throws Exception {
         File tempInput = File.createTempFile("uploaded_", ".pdf");
+        File compressed = null;
 
         try (FileOutputStream out = new FileOutputStream(tempInput);
              InputStream in = file.getInputStream()) {
             in.transferTo(out);
+
+            compressed = compressorService.compressPdf(tempInput);
+            byte[] compressedBytes = java.nio.file.Files.readAllBytes(compressed.toPath());
+
+            if (compressedBytes.length > 50 * 1024 * 1024) {
+                return ResponseEntity.badRequest()
+                        .body("Compressed PDF still exceeds 50MB".getBytes());
+            }
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.setContentDisposition(ContentDisposition.attachment().filename("compressed.pdf").build());
+
+            return new ResponseEntity<>(compressedBytes, headers, HttpStatus.OK);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(("Compression failed: " + e.getMessage()).getBytes());
+        } finally {
+            if (tempInput != null) tempInput.delete();
+            if (compressed != null) compressed.delete();
         }
-
-        File compressed = compressorService.compressPdf(tempInput);
-        byte[] compressedBytes = java.nio.file.Files.readAllBytes(compressed.toPath());
-
-        if (compressedBytes.length > 50 * 1024 * 1024) {
-            return ResponseEntity.badRequest().body("Compressed PDF still exceeds 50MB".getBytes());
-        }
-
-        return ResponseEntity.ok()
-                .header("Content-Type", "application/pdf")
-                .header("Content-Disposition", "attachment; filename=compressed.pdf")
-                .body(compressedBytes);
     }
+
+
+
 }

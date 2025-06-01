@@ -44,7 +44,6 @@ const SECTIONS = [
     "Bankruptcy, Divorce/Separation Agreement",
     "Any other supporting docs that may be requested by lender",
 ];
-
 function SortablePDF({ pdf, onRemove }) {
     const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: pdf.id });
 
@@ -221,12 +220,33 @@ export function MultiPDFDropBox() {
                     }
                 });
 
+                const contentType = response.headers['content-type'];
+                console.log('Compression response content-type:', contentType);
+
+                if (contentType !== 'application/pdf') {
+                    if (response.data instanceof Blob) {
+                        const errorText = await response.data.text();
+                        console.error('Compression failed (as text):', errorText);
+                        alert('Compression failed: ' + errorText);
+                    } else {
+                        console.error('Compression failed (not a Blob):', response.data);
+                        alert('Compression failed: unexpected response format.');
+                    }
+                    return;
+                }
+
+                // ✅ Ensure this is a proper Blob
                 finalBlob = response.data;
             }
 
-            // Step 4: Convert final Blob to URL for preview
+            // ✅ Final check before creating object URL
+            if (!(finalBlob instanceof Blob)) {
+                console.error('finalBlob is not a valid Blob object:', finalBlob);
+                alert('Invalid final file format. Please try again.');
+                return;
+            }
+
             const url = URL.createObjectURL(finalBlob);
-            console.log("Merged PDF URL:", url);  // Add this
             setMergedPDFUrl(url);
         } catch (error) {
             console.error("Error merging or compressing PDFs:", error);
@@ -286,7 +306,6 @@ export function MultiPDFDropBox() {
                 {SECTIONS.map(section => (
                     <PDFDropzone
                         key={section}
-                        section={section}
                         title={section}
                         files={filesBySection[section]}
                         onFilesChange={updateFilesForSection(section)}
