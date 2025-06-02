@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d94761a-9570-404b-b572-f3a3b85e45da" name="Changes" comment="New Changes">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PDFController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PDFController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pdf-Merger/target/classes/com/complianceagent/Pdf/Merger/PDFController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/target/classes/com/complianceagent/Pdf/Merger/PDFController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compliance-app/src/components/MergePDF.js" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/MergePDF.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.js" afterDir="false" />
-    </list>
+    <list default="true" id="2d94761a-9570-404b-b572-f3a3b85e45da" name="Changes" comment="New Changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -117,6 +110,7 @@
       <workItem from="1747044154018" duration="3510000" />
       <workItem from="1748720654221" duration="5719000" />
       <workItem from="1748764980765" duration="606000" />
+      <workItem from="1748818974306" duration="1072000" />
     </task>
     <servers />
   </component>
