@@ -171,6 +171,7 @@
     pointer-events: none;
     border: none;
     border-radius: 4px;
+    z-index: 0;
 }
 .remove-btn {
     color: red;

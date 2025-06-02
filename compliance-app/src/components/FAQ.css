@@ -66,3 +66,24 @@
     background-color: #eef6fd;
     border-color: #90caf9;
 }
+.faq-answer-wrapper {
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.faq-answer {
+    margin: 0.75rem 0 0 0;
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding-right: 1rem;
+}
+
+@media (max-width: 450px){
+    .faq-section {
+        width: 90%;
+    }
+    .faq-title {
+        font-size: 1.5rem;
+    }
+}
