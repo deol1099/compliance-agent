@@ -8,6 +8,7 @@
 .container {
     flex: 1;
     padding: 2rem;
+    padding-top: 80px;
     box-sizing: border-box;
     overflow-y: auto;
 }
@@ -167,7 +168,7 @@
     cursor: grab;
 }
 .pdf-iframe {
-    pointer-events: none; /* Prevents iframe from intercepting clicks */
+    pointer-events: none;
     border: none;
     border-radius: 4px;
 }

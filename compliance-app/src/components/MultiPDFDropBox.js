@@ -5,8 +5,7 @@ import { mergePDFSections } from './MergePDF';
 import './MultiPDFDropBox.css';
 import PDFViewer from './PDFViewer';
 import axios from 'axios';
-import Sidebar from './Sidebar';
-import { PDFDocument, rgb } from 'pdf-lib';
+import { PDFDocument} from 'pdf-lib';
 import {
     DndContext,
     closestCenter,
@@ -21,7 +20,6 @@ import {
     horizontalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-
 
 const SECTIONS = [
     "Client Checklist",
@@ -44,6 +42,21 @@ const SECTIONS = [
     "Bankruptcy, Divorce/Separation Agreement",
     "Any other supporting docs that may be requested by lender",
 ];
+
+const REQUIRED_SECTIONS = [
+    "Client Checklist",
+    "AML - Signed PEP, AML risk assessment form Photo ID",
+    "Client Engagement and WSA",
+    "CB - B1",
+    "Mortgage Application",
+    "Lender Commitment",
+    "MPP Application",
+    "Indemnification Form",
+    "Income - B1 (LOE, Pay stubs, T4/T1, NOA, Bank Statements, Declared Income, Pension)",
+    "Down-payment Verification",
+    "MLS and Offer to Purchase"
+];
+
 function SortablePDF({ pdf, onRemove }) {
     const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: pdf.id });
 
@@ -80,7 +93,6 @@ function SortablePDF({ pdf, onRemove }) {
 
     );
 }
-
 
 const PDFDropzone = ({title, files, onFilesChange, id, section}) => {
     const sensors = useSensors(useSensor(PointerSensor));
@@ -197,15 +209,29 @@ const PDFDropzone = ({title, files, onFilesChange, id, section}) => {
     );
 };
 
-
 export function MultiPDFDropBox() {
-    const [filesBySection, setFilesBySection] = useState(() =>
-        Object.fromEntries(SECTIONS.map(section => [section, []]))
-    );
-    const [mergedPDFUrl, setMergedPDFUrl] = useState(null);
+     const [filesBySection, setFilesBySection] = useState(() =>
+         Object.fromEntries(SECTIONS.map(section => [section, []]))
+     );
+     const [mergedPDFUrl, setMergedPDFUrl] = useState(null);
+    //  const missingSections = REQUIRED_SECTIONS.filter(
+    //     section => (filesBySection[section] || []).length === 0
+    // );
 
     const handleMerge = async () => {
+        const missingSections = REQUIRED_SECTIONS.filter(
+            section => (filesBySection[section] || []).length === 0
+        );
+        if (missingSections.length > 0) {
+            const message = `⚠️ Warning: The following required sections are empty:\n- ${missingSections.join(
+                '\n- '
+            )}\n\nDo you still want to proceed with the merge?`;
+            const proceed = window.confirm(message);
+
+            if (!proceed) return;
+        }
         try {
+
             // Step 1: Merge PDFs client-side, result is a Blob
             const mergedBlob = await mergePDFSections(filesBySection, SECTIONS);
             console.log("Merged Blob:", mergedBlob);  // NEW LINE
@@ -297,26 +323,14 @@ export function MultiPDFDropBox() {
             document.body.removeChild(link);
         }
     }, [mergedPDFUrl]);
-    const [sidebarOpen, setSidebarOpen] = useState(false);
-
-    const toggleSidebar = () => {
-        setSidebarOpen(prev => !prev);
-    };
+    // const [sidebarOpen, setSidebarOpen] = useState(false);
+    //
+    // const toggleSidebar = () => {
+    //     setSidebarOpen(prev => !prev);
+    // };
 
     return (
         <>
-        {/*<button className="toggle-btn" onClick={toggleSidebar}>*/}
-        {/*    ☰*/}
-        {/*</button>*/}
-
-        {/*{sidebarOpen && (*/}
-        {/*    <div className="backdrop" onClick={toggleSidebar}></div>*/}
-        {/*)}*/}
-
-        {/*<div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>*/}
-        {/*    <Sidebar sections={SECTIONS} />*/}
-        {/*</div>*/}
-
         <div className="container">
                 {SECTIONS.map(section => (
                     <PDFDropzone
