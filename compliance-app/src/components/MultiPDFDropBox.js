@@ -63,7 +63,9 @@ function SortablePDF({ pdf, onRemove }) {
                 height="200"
                 className="pdf-iframe"
             />
-            <button className="remove-btn" onClick={() => onRemove(pdf.id)}>Remove</button>
+            <button className="remove-btn" onClick={() => {
+                console.log('Removing:', pdf.id);
+                onRemove(pdf.id);}}npmnpm>Remove</button>
         </div>
     );
 }
@@ -133,16 +135,15 @@ const PDFDropzone = ({ title, files, onFilesChange, id, section }) => {
     }, [onFilesChange]);
 
     const removeFile = useCallback((id) => {
-        onFilesChange(prevFiles => {
-            const updatedFiles = prevFiles.filter(f => {
+        onFilesChange((prevFiles) =>
+            prevFiles.filter(f => {
                 const keep = f.id !== id;
                 if (!keep) {
                     URL.revokeObjectURL(f.url);
                 }
                 return keep;
-            });
-            return updatedFiles;
-        });
+            })
+        );
     }, [onFilesChange]);
 
 
@@ -269,17 +270,17 @@ export function MultiPDFDropBox() {
 
     return (
         <>
-        <button className="toggle-btn" onClick={toggleSidebar}>
-            ☰
-        </button>
+        {/*<button className="toggle-btn" onClick={toggleSidebar}>*/}
+        {/*    ☰*/}
+        {/*</button>*/}
 
-        {sidebarOpen && (
-            <div className="backdrop" onClick={toggleSidebar}></div>
-        )}
+        {/*{sidebarOpen && (*/}
+        {/*    <div className="backdrop" onClick={toggleSidebar}></div>*/}
+        {/*)}*/}
 
-        <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
-            <Sidebar sections={SECTIONS} />
-        </div>
+        {/*<div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>*/}
+        {/*    <Sidebar sections={SECTIONS} />*/}
+        {/*</div>*/}
 
         <div className="container">
                 {SECTIONS.map(section => (

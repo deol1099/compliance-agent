@@ -4,9 +4,9 @@ import './Sidebar.css';
 const Sidebar = ({ sections, isOpen, onToggle }) => {
     return (
         <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
-            <button className="toggle-btn" onClick={onToggle}>
-                {isOpen ? '⮜' : '☰'}
-            </button>
+            {/*<button className="toggle-btn" onClick={onToggle}>*/}
+            {/*    {isOpen ? '⮜' : '☰'}*/}
+            {/*</button>*/}
             {isOpen && (
                 <button className="close-btn" onClick={onToggle}>
                     ×

@@ -86,13 +86,14 @@
 /* === Merged Preview === */
 .merged-preview {
     margin: 2rem auto 0;
-    max-width: 90vw;
+    max-width: 100%; /* Increased from 90vw */
     width: 100%;
     position: relative;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column; /* Added to stack children vertically */
 }
 
 /* === Backdrop === */
