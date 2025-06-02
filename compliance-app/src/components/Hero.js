@@ -12,7 +12,7 @@ const Hero = () => (
             </Link>
         </div>
         <div className="pdf">
-            <img className="pdf1" src="pdf.png" alt="PDF logo" />
+            <img className="pdf1" src="/pdf.png" alt="PDF logo" />
         </div>
     </div>
 );

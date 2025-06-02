@@ -5,28 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d94761a-9570-404b-b572-f3a3b85e45da" name="Changes" comment="New Changes">
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/ForwardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/AB-Checklist.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/asset-manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/logo192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/logo512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/pdf.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/pic2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/sidebar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/static/css/main.83efa26a.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/static/css/main.83efa26a.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/static/js/453.38b4bda3.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/static/js/453.38b4bda3.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/static/js/main.9a1227ae.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/static/js/main.9a1227ae.js.LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/static/js/main.9a1227ae.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PdfMergerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PdfMergerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pdf-Merger/target/classes/com/complianceagent/Pdf/Merger/PdfMergerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/target/classes/com/complianceagent/Pdf/Merger/PdfMergerApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/ForwardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/ForwardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/static/js/main.9a1227ae.js" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/static/js/main.f1574fb5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/static/js/main.9a1227ae.js.LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/static/js/main.f1574fb5.js.LICENSE.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/static/js/main.9a1227ae.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/static/js/main.f1574fb5.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/src/components/Features.js" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/Features.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/src/components/Hero.js" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/Hero.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +85,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Pdf-Merger/src/main/resources" />
+      <recent name="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/compliance-app/public" />
@@ -138,7 +127,7 @@
       <workItem from="1748764980765" duration="606000" />
       <workItem from="1748818974306" duration="1072000" />
       <workItem from="1748847302539" duration="4505000" />
-      <workItem from="1748890672539" duration="6464000" />
+      <workItem from="1748890672539" duration="8131000" />
     </task>
     <servers />
   </component>
