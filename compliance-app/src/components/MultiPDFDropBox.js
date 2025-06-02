@@ -64,13 +64,16 @@ function SortablePDF({ pdf, onRemove }) {
             />
             <button className="remove-btn" onClick={() => {
                 console.log('Removing:', pdf.id);
-                onRemove(pdf.id);}}npmnpm>Remove</button>
+                onRemove(pdf.id);
+            }}>Remove
+            </button>
+            {/*<button onClick={() => console.log("Button clicked!")}>Test Click</button>*/}
         </div>
     );
 }
 
 
-const PDFDropzone = ({ title, files, onFilesChange, id, section }) => {
+const PDFDropzone = ({title, files, onFilesChange, id, section}) => {
     const sensors = useSensors(useSensor(PointerSensor));
 
     const onDrop = useCallback(async (acceptedFiles) => {
@@ -265,10 +268,13 @@ export function MultiPDFDropBox() {
     };
 
     const updateFilesForSection = (section) => (updater) => {
-        setFilesBySection(prev => ({
-            ...prev,
-            [section]: typeof updater === 'function' ? updater(prev[section] || []) : updater,
-        }));
+        setFilesBySection(prev => {
+            const updated = typeof updater === 'function' ? updater(prev[section] || []) : updater;
+            return {
+                ...prev,
+                [section]: [...updated], // Force array clone
+            };
+        });
     };
 
     useEffect(() => {
