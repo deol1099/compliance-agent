@@ -54,21 +54,30 @@ function SortablePDF({ pdf, onRemove }) {
     };
 
     return (
-        <div ref={setNodeRef} className="sortable-pdf" style={style} {...listeners} {...attributes}>
-            <iframe
-                src={pdf.url}
-                title={pdf.file.name}
-                width="100%"
-                height="200"
-                className="pdf-iframe"
-            />
-            <button className="remove-btn" onClick={() => {
-                console.log('Removing:', pdf.id);
-                onRemove(pdf.id);
-            }}>Remove
-            </button>
-            {/*<button onClick={() => console.log("Button clicked!")}>Test Click</button>*/}
+        <div ref={setNodeRef} className="sortable-pdf" style={style} {...attributes}>
+            <div style={{position: 'relative'}}>
+                <div {...listeners} className="drag-handle">
+                    <iframe
+                        src={pdf.url}
+                        title={pdf.file.name}
+                        width="100%"
+                        height="200"
+                        className="pdf-iframe"
+                    />
+                </div>
+                <button
+                    className="remove-btn"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onRemove(pdf.id);
+                    }}
+                >
+                    Remove
+                </button>
+            </div>
         </div>
+
+
     );
 }
 
@@ -323,13 +332,17 @@ export function MultiPDFDropBox() {
                     <div className="merged-preview">
                         <PDFViewer pdfUrl={mergedPDFUrl}/>
                         <div style={{marginTop: '10px'}}>
-                            <a href={mergedPDFUrl} download="merged-document.pdf">
+                            <a
+                                href={mergedPDFUrl}
+                                download="merged-document.pdf"
+                                style={{textDecoration: 'none', display: 'inline-block'}}
+                            >
                                 <button className="download-btn">Download PDF</button>
                             </a>
                         </div>
                     </div>
                 )}
-            </div>
+        </div>
         </>
-            );
-            }
+    );
+}
