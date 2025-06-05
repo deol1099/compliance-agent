@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2d94761a-9570-404b-b572-f3a3b85e45da" name="Changes" comment="New Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pdf-Merger/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/CompressPDF.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/CompressPDF.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PDFController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PDFController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pdf-Merger/target/classes/com/complianceagent/Pdf/Merger/PDFController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/target/classes/com/complianceagent/Pdf/Merger/PDFController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -124,6 +126,8 @@
       <workItem from="1748890672539" duration="8131000" />
       <workItem from="1748932112390" duration="105000" />
       <workItem from="1748933790889" duration="628000" />
+      <workItem from="1749033966799" duration="2213000" />
+      <workItem from="1749101603907" duration="484000" />
     </task>
     <servers />
   </component>

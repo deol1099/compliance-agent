@@ -150,6 +150,7 @@ public class PDFController {
     public ResponseEntity<byte[]> compress(@RequestParam("file") MultipartFile file) throws Exception {
         File tempInput = File.createTempFile("uploaded_", ".pdf");
         File compressed = null;
+        System.out.println("Received file: " + file.getOriginalFilename());
 
         try (FileOutputStream out = new FileOutputStream(tempInput);
              InputStream in = file.getInputStream()) {
@@ -177,6 +178,7 @@ public class PDFController {
             if (compressed != null) compressed.delete();
         }
     }
+
 
 
 
