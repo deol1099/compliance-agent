@@ -30,7 +30,7 @@ import java.io.InputStream;
 
 
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://compliance-app-env.eba-42m8s3pr.ca-central-1.elasticbeanstalk.com")
 @RestController
 @RequestMapping("/api/pdf")
 public class PDFController {

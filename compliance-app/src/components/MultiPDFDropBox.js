@@ -133,9 +133,10 @@ const PDFDropzone = ({title, files, onFilesChange, id, section}) => {
             }
 
             try {
+                const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080';
                 const formData = new FormData();
                 formData.append('file', processedFile);
-                const { data } = await axios.post('http://localhost:8080/api/pdf/decrypt', formData, {
+                const { data } = await axios.post(`${BASE_URL}/api/pdf/decrypt`, formData, {
                     responseType: 'blob',
                 });
                 const blob = new Blob([data], { type: 'application/pdf' });
@@ -245,13 +246,14 @@ export function MultiPDFDropBox() {
             let finalBlob = mergedBlob;
 
             if (sizeMB > 50) {
+                const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080';
                 console.log(`Merged PDF is ${sizeMB.toFixed(2)} MB. Sending for compression...`);
 
                 // Step 3: Send to backend for compression
                 const formData = new FormData();
                 formData.append("file", mergedBlob, "merged.pdf");
 
-                const response = await axios.post("http://localhost:8080/api/pdf/compress", formData, {
+                const response = await axios.post(`${BASE_URL}/api/pdf/compress`, formData, {
                     responseType: 'blob',
                     headers: {
                         'Content-Type': 'multipart/form-data',
