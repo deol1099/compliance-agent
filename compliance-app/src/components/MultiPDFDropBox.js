@@ -325,11 +325,6 @@ export function MultiPDFDropBox() {
             document.body.removeChild(link);
         }
     }, [mergedPDFUrl]);
-    // const [sidebarOpen, setSidebarOpen] = useState(false);
-    //
-    // const toggleSidebar = () => {
-    //     setSidebarOpen(prev => !prev);
-    // };
 
     return (
         <>

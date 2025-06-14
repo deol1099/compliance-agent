@@ -9,28 +9,16 @@ import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
 import java.util.HashMap;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.springframework.http.*;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.file.Files;
-
-import java.nio.file.Files;
-
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-
-
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 
-
-
 @CrossOrigin(origins = "http://compliance-app-env.eba-42m8s3pr.ca-central-1.elasticbeanstalk.com")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/pdf")
 public class PDFController {
@@ -66,49 +54,6 @@ public class PDFController {
         }
     }
 
-
-//    @PostMapping("/decrypt")
-//    public ResponseEntity<?> decryptPDF(@RequestParam("file") MultipartFile file) {
-//        try {
-//            // Save uploaded file temporarily
-//            File inputFile = File.createTempFile("encrypted-", ".pdf");
-//            Files.write(inputFile.toPath(), file.getBytes());
-//
-//            // Decrypt AND uncompress PDF streams
-//            File decryptedFile = File.createTempFile("decrypted-", ".pdf");
-//            ProcessBuilder decryptBuilder = new ProcessBuilder(
-//                    "qpdf",
-//                    "--decrypt",
-//                    "--stream-data=uncompress", // <--- This is the fix
-//                    inputFile.getAbsolutePath(),
-//                    decryptedFile.getAbsolutePath()
-//            );
-//            Process decryptProcess = decryptBuilder.start();
-//            int exitCode = decryptProcess.waitFor();
-//
-//            inputFile.delete();
-//
-//            if (exitCode != 0 && exitCode != 3) { // Accept exit code 3 too
-//                String error = new String(decryptProcess.getErrorStream().readAllBytes());
-//                System.err.println("QPDF Decryption Error:\n" + error);
-//                return ResponseEntity
-//                        .status(HttpStatus.BAD_REQUEST)
-//                        .body("Failed to decrypt PDF: " + file.getOriginalFilename() + "\nQPDF stderr: " + error);
-//            }
-//
-//            byte[] decryptedBytes = Files.readAllBytes(decryptedFile.toPath());
-//            decryptedFile.delete();
-//
-//            return ResponseEntity.ok()
-//                    .contentType(MediaType.APPLICATION_PDF)
-//                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=decrypted.pdf")
-//                    .body(decryptedBytes);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error decrypting PDF.");
-//        }
-//    }
     @PostMapping("/decrypt")
     public ResponseEntity<?> decryptPDF(@RequestParam("file") MultipartFile file) {
         File tempInput = null;
@@ -178,8 +123,4 @@ public class PDFController {
             if (compressed != null) compressed.delete();
         }
     }
-
-
-
-
 }
