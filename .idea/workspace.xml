@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d94761a-9570-404b-b572-f3a3b85e45da" name="Changes" comment="New Changes">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/CompressPDF.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/CompressPDF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PDFController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/PDFController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/src/main/java/com/complianceagent/Pdf/Merger/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pdf-Merger/target/classes/com/complianceagent/Pdf/Merger/PDFController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Pdf-Merger/target/classes/com/complianceagent/Pdf/Merger/PDFController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compliance-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/compliance-app/src/components/MultiPDFDropBox.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -13,12 +21,15 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -37,6 +48,10 @@
     &quot;accountId&quot;: &quot;2f3b0d78-c239-4e7a-8cab-8675f6df00b8&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -57,7 +72,7 @@
     &quot;Spring Boot.PdfMergerApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/shubhkarandhillon/Documents/compliance-agent&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/shubhkarandhillon/Documents/compliance-agent/Pdf-Merger/src/main/resources&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -75,7 +90,14 @@
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Pdf-Merger/src/main/resources" />
+      <recent name="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static" />
+      <recent name="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/static/js" />
+      <recent name="$PROJECT_DIR$/Pdf-Merger/src/main/resources/static/static/css" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Pdf-Merger/.platform/nginx/conf.d" />
       <recent name="$PROJECT_DIR$/compliance-app/public" />
     </key>
   </component>
@@ -88,12 +110,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PdfMergerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="Pdf-Merger" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.complianceagent.Pdf.Merger.PdfMergerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
       </set>
     </attachedChunks>
   </component>
@@ -114,7 +144,15 @@
       <workItem from="1748720654221" duration="5719000" />
       <workItem from="1748764980765" duration="606000" />
       <workItem from="1748818974306" duration="1072000" />
-      <workItem from="1748847302539" duration="638000" />
+      <workItem from="1748847302539" duration="4505000" />
+      <workItem from="1748890672539" duration="8131000" />
+      <workItem from="1748932112390" duration="105000" />
+      <workItem from="1748933790889" duration="628000" />
+      <workItem from="1749033966799" duration="2213000" />
+      <workItem from="1749101603907" duration="484000" />
+      <workItem from="1749191514968" duration="9087000" />
+      <workItem from="1749275853409" duration="5090000" />
+      <workItem from="1749785456582" duration="5064000" />
     </task>
     <servers />
   </component>

@@ -37,7 +37,12 @@ const FAQ = () => {
                             <span>{faq.question}</span>
                             <span className="faq-toggle">{openIndex === index ? "−" : "+"}</span>
                         </div>
-                        {openIndex === index && <p className="faq-answer">{faq.answer}</p>}
+                        <div
+                            className={`faq-answer-wrapper ${openIndex === index ? 'open' : ''}`}
+                            style={{maxHeight: openIndex === index ? '500px' : '0px'}}
+                        >
+                            <p className="faq-answer">{faq.answer}</p>
+                        </div>
                     </div>
                 ))}
             </div>

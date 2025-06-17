@@ -1,7 +1,7 @@
 import "./Features.css"
 const Features = () => (
     <div className="features1">
-        <img className="features-img" src="pic2.png" alt="Feature 1" />
+        <img className="features-img" src="/pic2.png" alt="Feature 1" />
         <div className="features">
             <h2>Why Compliance Agent?</h2>
             <ul className="features-list">

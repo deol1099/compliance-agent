@@ -70,3 +70,15 @@ li::marker {
 li:first-child::marker {
     font-size: 5rem;
 }
+
+@media (max-width: 450px){
+    .features-img{
+        width: 150px;
+        height: 200px;
+        margin-left:20px;
+    }
+    .features-list p{
+        font-size: small;
+    }
+
+}

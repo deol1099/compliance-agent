@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import { getDocument, GlobalWorkerOptions } from "pdfjs-dist";
+import './Hero.css';
 
 // Set worker
 GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js`;
 
 function PDFViewer({ pdfUrl }) {
     const [pages, setPages] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (!pdfUrl) return;
 
         const loadPDF = async () => {
             try {
+                setLoading(true); // start loader
                 const loadingTask = getDocument(pdfUrl);
                 const pdf = await loadingTask.promise;
                 const newPages = [];
@@ -30,12 +33,14 @@ function PDFViewer({ pdfUrl }) {
                         viewport,
                     }).promise;
 
-                    newPages.push(canvas.toDataURL()); // store image of the canvas
+                    newPages.push(canvas.toDataURL());
                 }
 
                 setPages(newPages);
             } catch (error) {
                 console.error("Error rendering PDF:", error);
+            } finally {
+                setLoading(false); // stop loader
             }
         };
 
@@ -44,14 +49,21 @@ function PDFViewer({ pdfUrl }) {
 
     return (
         <div style={{ overflowY: "auto", maxHeight: "400px", border: "1px solid #ccc", padding: "10px", width: "45%" }}>
-            {pages.map((imgSrc, index) => (
-                <img
-                    key={index}
-                    src={imgSrc}
-                    alt={`PDF page ${index + 1}`}
-                    style={{ display: "block", marginBottom: "10px", width: "100%" }}
-                />
-            ))}
+            {loading ? (
+                <div style={{ textAlign: "center", padding: "20px" }}>
+                    <div className="loader" />
+                    <p style={{ marginTop: "10px" }}>Merging and loading PDF...</p>
+                </div>
+            ) : (
+                pages.map((imgSrc, index) => (
+                    <img
+                        key={index}
+                        src={imgSrc}
+                        alt={`PDF page ${index + 1}`}
+                        style={{ display: "block", marginBottom: "10px", width: "100%" }}
+                    />
+                ))
+            )}
         </div>
     );
 }
