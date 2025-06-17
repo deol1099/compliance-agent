@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { isEncryptedPDF } from '../utils/checkencryption.js';
 import { v4 as uuidv4 } from 'uuid';
 import { mergePDFSections } from './MergePDF';
 import './MultiPDFDropBox.css';
@@ -89,14 +90,10 @@ function SortablePDF({ pdf, onRemove }) {
                 </button>
             </div>
         </div>
-
-
     );
 }
 
-const PDFDropzone = ({title, files, onFilesChange, id, section}) => {
-    const sensors = useSensors(useSensor(PointerSensor));
-
+function PDFDropzone({title, files, onFilesChange, id}) {
     const onDrop = useCallback(async (acceptedFiles) => {
         const newFiles = await Promise.all(acceptedFiles.map(async (file) => {
             let processedFile = file;
@@ -136,10 +133,42 @@ const PDFDropzone = ({title, files, onFilesChange, id, section}) => {
                 const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080';
                 const formData = new FormData();
                 formData.append('file', processedFile);
-                const { data } = await axios.post(`${BASE_URL}/api/pdf/decrypt`, formData, {
-                    responseType: 'blob',
-                });
-                const blob = new Blob([data], { type: 'application/pdf' });
+
+                let blob;
+                const encrypted = await isEncryptedPDF(processedFile);
+
+                if (encrypted) {
+                    // 🔐 Decrypt file
+                    const { data: decryptedData } = await axios.post(`${BASE_URL}/api/pdf/decrypt`, formData, {
+                        responseType: 'blob',
+                    });
+                    blob = new Blob([decryptedData], { type: 'application/pdf' });
+                } else {
+                    console.info(`${processedFile.name} is not encrypted. Skipping decryption.`);
+                    blob = processedFile;
+                }
+
+                // ⚙️ Compress if large
+                if (blob.size > 1 * 1024 * 1024) {  // Compress if >1MB
+                    const compressForm = new FormData();
+                    compressForm.append('file', blob, 'decrypted.pdf');
+
+                    try {
+                        const compressResponse = await axios.post(`${BASE_URL}/api/pdf/compress`, compressForm, {
+                            responseType: 'blob',
+                            headers: {'Content-Type': 'multipart/form-data'}
+                        });
+
+                        if (compressResponse.headers['content-type'] === 'application/pdf') {
+                            blob = compressResponse.data;
+                        } else {
+                            console.warn('Unexpected compression response type, skipping compression.');
+                        }
+                    } catch (err) {
+                        console.warn('Compression failed for', processedFile.name, err);
+                    }
+                }
+
                 return {
                     id: uuidv4(),
                     file: new File([blob], processedFile.name),
@@ -170,8 +199,7 @@ const PDFDropzone = ({title, files, onFilesChange, id, section}) => {
         );
     }, [onFilesChange]);
 
-
-    const handleDragEnd = ({ active, over }) => {
+    const handleDragEnd = ({active, over}) => {
         if (!over || active.id === over.id) return;
         const oldIndex = files.findIndex(f => f.id === active.id);
         const newIndex = files.findIndex(f => f.id === over.id);
@@ -180,7 +208,7 @@ const PDFDropzone = ({title, files, onFilesChange, id, section}) => {
         }
     };
 
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({
         onDrop,
         accept: {
             'application/pdf': ['.pdf'],
@@ -189,6 +217,10 @@ const PDFDropzone = ({title, files, onFilesChange, id, section}) => {
         },
         multiple: true
     });
+
+    const sensors = useSensors(
+        useSensor(PointerSensor)
+    );
 
     return (
         <div id={id} className="dropzone-section">
@@ -201,24 +233,20 @@ const PDFDropzone = ({title, files, onFilesChange, id, section}) => {
                 <SortableContext items={files.map(f => f.id)} strategy={horizontalListSortingStrategy}>
                     <div className="sortable-container">
                         {files.map((pdf) => (
-                            <SortablePDF key={pdf.id} pdf={pdf} onRemove={removeFile} />
+                            <SortablePDF key={pdf.id} pdf={pdf} onRemove={removeFile}/>
                         ))}
                     </div>
                 </SortableContext>
             </DndContext>
         </div>
     );
-};
+}
 
 export function MultiPDFDropBox() {
-     const [filesBySection, setFilesBySection] = useState(() =>
-         Object.fromEntries(SECTIONS.map(section => [section, []]))
-     );
-     const [mergedPDFUrl, setMergedPDFUrl] = useState(null);
-    //  const missingSections = REQUIRED_SECTIONS.filter(
-    //     section => (filesBySection[section] || []).length === 0
-    // );
-
+    const [filesBySection, setFilesBySection] = useState(() =>
+        Object.fromEntries(SECTIONS.map(section => [section, []]))
+    );
+    const [mergedPDFUrl, setMergedPDFUrl] = useState(null);
     const handleMerge = async () => {
         const missingSections = REQUIRED_SECTIONS.filter(
             section => (filesBySection[section] || []).length === 0
@@ -228,81 +256,37 @@ export function MultiPDFDropBox() {
                 '\n- '
             )}\n\nDo you still want to proceed with the merge?`;
             const proceed = window.confirm(message);
-
             if (!proceed) return;
         }
-        try {
 
-            // Step 1: Merge PDFs client-side, result is a Blob
+        try {
+            // Step 1: Merge pre-compressed PDFs
             const mergedBlob = await mergePDFSections(filesBySection, SECTIONS);
-            console.log("Merged Blob:", mergedBlob);  // NEW LINE
+            console.log("Merged Blob:", mergedBlob);
             if (!mergedBlob) {
                 console.error('Failed to merge PDFs.');
                 return;
             }
 
-            // Step 2: Check size
-            const sizeMB = mergedBlob.size / (1024 * 1024);
-            let finalBlob = mergedBlob;
-
-            if (sizeMB > 50) {
-                const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080';
-                console.log(`Merged PDF is ${sizeMB.toFixed(2)} MB. Sending for compression...`);
-
-                // Step 3: Send to backend for compression
-                const formData = new FormData();
-                formData.append("file", mergedBlob, "merged.pdf");
-
-                const response = await axios.post(`${BASE_URL}/api/pdf/compress`, formData, {
-                    responseType: 'blob',
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    }
-                });
-
-                const contentType = response.headers['content-type'];
-                console.log('Compression response content-type:', contentType);
-
-                if (contentType !== 'application/pdf') {
-                    if (response.data instanceof Blob) {
-                        const errorText = await response.data.text();
-                        console.error('Compression failed (as text):', errorText);
-                        alert('Compression failed: ' + errorText);
-                    } else {
-                        console.error('Compression failed (not a Blob):', response.data);
-                        alert('Compression failed: unexpected response format.');
-                    }
-                    return;
-                }
-
-                // ✅ Ensure this is a proper Blob
-                finalBlob = response.data;
-            }
-
-            // ✅ Final check before creating object URL
-            if (!(finalBlob instanceof Blob)) {
-                console.error('finalBlob is not a valid Blob object:', finalBlob);
-                alert('Invalid final file format. Please try again.');
-                return;
-            }
-
-            const url = URL.createObjectURL(finalBlob);
+            // ✅ Create preview URL
+            const url = URL.createObjectURL(mergedBlob);
             setMergedPDFUrl(url);
         } catch (error) {
-            console.error("Error merging or compressing PDFs:", error);
+            console.error("Error merging PDFs:", error);
+            alert("Something went wrong while merging. Please try again.");
         }
     };
 
-    const handlePayAndDownload = async () => {
-        try {
-            const response = await axios.post('http://localhost:8080/api/pdf/stripe/create-checkout-session', {
-                mergedPdfUrl: mergedPDFUrl
-            });
-            window.location.href = response.data.checkoutUrl;
-        } catch (err) {
-            console.error('Failed to initiate Stripe session:', err);
-        }
-    };
+    // const handlePayAndDownload = async () => {
+    //     try {
+    //         const response = await axios.post('http://localhost:8080/api/pdf/stripe/create-checkout-session', {
+    //             mergedPdfUrl: mergedPDFUrl
+    //         });
+    //         window.location.href = response.data.checkoutUrl;
+    //     } catch (err) {
+    //         console.error('Failed to initiate Stripe session:', err);
+    //     }
+    // };
 
     const updateFilesForSection = (section) => (updater) => {
         setFilesBySection(prev => {
