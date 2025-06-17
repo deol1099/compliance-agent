@@ -45,12 +45,6 @@ npm start
 The app runs at: http://localhost:3000
 🧱 System Architecture
 
-graph TD
-    A[Frontend - React] -->|Sends PDF| B[Backend - Spring Boot]
-    B -->|Processes & Merges| C[PDF Output]
-    A -->|Reverse Proxy| D[NGINX]
-    D --> B
-    D --> A
 Frontend (React) – Handles UI, file uploads, drag-and-drop interface, and PDF previews.
 Backend (Spring Boot) – Handles secure decryption and PDF merging using Apache PDFBox.
 NGINX – Serves as a reverse proxy and static asset server for production deployment.
