@@ -1,22 +1,27 @@
-FROM openjdk:21-slim
+# Stage 1: Build
+FROM openjdk:21-slim AS build
 
-# Install Maven
 RUN apt-get update && \
     apt-get install -y maven && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Setup project directory
 WORKDIR /app
 
-# Copy project files
 COPY pom.xml /app
 COPY src /app/src
 COPY .platform /app/.platform
-COPY target /app/target
 
-# Download dependencies and package app
 RUN mvn clean package -DskipTests
 
-# Expose Spring Boot default ports
+# Stage 2: Run
+FROM openjdk:21-slim
+
+WORKDIR /app
+
+COPY --from=build /app/target/Pdf-Merger-0.0.1-SNAPSHOT.jar /Pdf-Merger-0.0.1-SNAPSHOT.jar
+COPY .platform /app/.platform
+
 EXPOSE 5000
+
+ENTRYPOINT ["java", "-Dserver.port=5000", "-jar", "/Pdf-Merger-0.0.1-SNAPSHOT.jar"]
