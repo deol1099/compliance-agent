@@ -5,17 +5,23 @@ The **Compliance Agent** application is a full-stack web solution built to strea
 The platform consists of a React frontend, a Spring Boot backend, and an NGINX reverse proxy for production deployments. It supports drag-and-drop upload zones, document previewing, and secure server-side processing.
 
 ---
-
-## 🗂️ Folder Structure
+## Folder Structure 
+compliance-agent/
 ├── backend # Spring Boot backend service for PDF merging and decryption
-   └── PdfMerger
-         └──src/main/java.com.complianceagent.Pdf.Merger
+│ └── PdfMerger
+│ └── src/main/java/com/complianceagent/Pdf/Merger
+│
 ├── frontend # React frontend application
-   └── compliance-app
-          └──src/components
+│ └── compliance-app
+│ └── src/components
+│
 ├── nginx # NGINX reverse proxy configuration
-  └── PdfMerger
-         └──.platform/nginx/conf.d/client_max_body_size.conf
+│ └── PdfMerger
+│ └── .platform/nginx/conf.d/client_max_body_size.conf
+│
+├── docker-compose.yml # Docker setup for local development
+├── docker-compose.prod.yaml # Docker setup for production
+└── README.md
 
 ## Technologies Used
 
