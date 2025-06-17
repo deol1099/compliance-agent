@@ -33,14 +33,26 @@ compliance-agent/
 - **Reverse Proxy:** NGINX
 
 ---
+## Running With Docker
+
+### Dev Environment
+Does not support hot reload
+```
+docker compose up -d
+```
+### Prod Environment
+```
+docker compose -f docker-compose.prod.yaml up -d
+```
+
 ## Running Without Docker (Manual)
 
-  ## Backend
+  ### Backend
   cd PdfMerger
   ./mvnw spring-boot:run
   Ensure port 8080 is free.
 
-  ## Frontend
+  ### Frontend
   cd compliance-app
   npm install
   npm start
@@ -50,6 +62,8 @@ compliance-agent/
 Frontend (React) – Handles UI, PDF preview, drag-and-drop
 Backend (Spring Boot) – Processes and decrypts PDFs, merges documents
 NGINX – Reverse proxy and static file delivery
+
+![Architecture Diagram](./images/architecture.png)
 
 ## Future Improvements
 Add user authentication (OAuth 2.0)

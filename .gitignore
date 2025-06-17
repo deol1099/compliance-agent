@@ -11,6 +11,6 @@ src/main/resources/application.properties
 **/target/
 *.class
 .idea/
-/Pdf-Merger/src/main/resources/application.properties
+/backend/src/main/resources/application.properties
 # Ignore dependencies and cache
-compliance-app/node_modules/
+frontend/node_modules/
