@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Compliance Agent – PDF Merger Web App
 
 Compliance Agent is a full-stack web application built to streamline document handling in the mortgage industry. It enables mortgage agents and administrators to upload, decrypt, rearrange, and merge PDF documents in compliance with regulatory requirements.
@@ -19,7 +18,7 @@ File Transfer: Axios, RESTful APIs
 Authentication / Payments (Optional): OAuth 2.0, Stripe
 Reverse Proxy: NGINX
 📁 Folder Structure
-
+```
 compliance-agent/
 ├── backend/                        # Spring Boot backend
 │   └── PdfMerger/
@@ -33,6 +32,7 @@ compliance-agent/
 ├── docker-compose.yml             # Local Docker setup
 ├── docker-compose.prod.yaml       # Production Docker setup
 └── README.md
+```
 ⚙️ Running the App Without Docker (Manual)
 
 Backend
@@ -131,4 +131,3 @@ Enhanced error logging and monitoring
 
 
 ---
->>>>>>> devops
