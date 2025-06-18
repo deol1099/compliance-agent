@@ -11,8 +11,12 @@ src/main/resources/application.properties
 **/target/
 *.class
 .idea/
-/Pdf-Merger/src/main/resources/application.properties
+/backend/src/main/resources/application.properties
 # Ignore dependencies and cache
+<<<<<<< HEAD
 compliance-app/node_modules/
 .idea/
 .DS_Store
+=======
+frontend/node_modules/
+>>>>>>> devops
