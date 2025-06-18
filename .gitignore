@@ -14,3 +14,4 @@ src/main/resources/application.properties
 /Pdf-Merger/src/main/resources/application.properties
 # Ignore dependencies and cache
 compliance-app/node_modules/
+.idea/
