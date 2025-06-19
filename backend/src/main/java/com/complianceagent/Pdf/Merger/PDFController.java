@@ -17,8 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import java.io.InputStream;
 
-@CrossOrigin(origins = "http://compliance-app-env.eba-42m8s3pr.ca-central-1.elasticbeanstalk.com")
-//@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://compliance-app-env.eba-42m8s3pr.ca-central-1.elasticbeanstalk.com")
+@CrossOrigin(origins = "http://localhost:5000")
 @RestController
 @RequestMapping("/api/pdf")
 public class PDFController {
@@ -27,23 +27,22 @@ public class PDFController {
 
     @PostMapping("/stripe/create-checkout-session")
     public ResponseEntity<Map<String, String>> createCheckoutSession(@RequestBody Map<String, String> payload) {
-//        Stripe.apiKey = System.getenv("STRIPE_SECRET_KEY");
+        // Stripe.apiKey = System.getenv("STRIPE_SECRET_KEY");
 
         String successUrl = "http://localhost:3000?payment=success";
         String cancelUrl = "http://localhost:3000?payment=cancel";
 
         try {
-            SessionCreateParams params =
-                    SessionCreateParams.builder()
-                            .setMode(SessionCreateParams.Mode.PAYMENT)
-                            .setSuccessUrl(successUrl)
-                            .setCancelUrl(cancelUrl)
-                            .addLineItem(
-                                    SessionCreateParams.LineItem.builder()
-                                            .setQuantity(1L)
-                                            .setPrice("price_1RNLmTD8oruRmlHjHGDlk1Hu")
-                                            .build())
-                            .build();
+            SessionCreateParams params = SessionCreateParams.builder()
+                    .setMode(SessionCreateParams.Mode.PAYMENT)
+                    .setSuccessUrl(successUrl)
+                    .setCancelUrl(cancelUrl)
+                    .addLineItem(
+                            SessionCreateParams.LineItem.builder()
+                                    .setQuantity(1L)
+                                    .setPrice("price_1RNLmTD8oruRmlHjHGDlk1Hu")
+                                    .build())
+                    .build();
 
             Session session = Session.create(params);
             Map<String, String> response = new HashMap<>();
@@ -86,8 +85,10 @@ public class PDFController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error decrypting PDF.");
         } finally {
-            if (tempInput != null) tempInput.delete();
-            if (tempOutput != null) tempOutput.delete();
+            if (tempInput != null)
+                tempInput.delete();
+            if (tempOutput != null)
+                tempOutput.delete();
         }
     }
 
@@ -98,7 +99,7 @@ public class PDFController {
         System.out.println("Received file: " + file.getOriginalFilename());
 
         try (FileOutputStream out = new FileOutputStream(tempInput);
-             InputStream in = file.getInputStream()) {
+                InputStream in = file.getInputStream()) {
             in.transferTo(out);
 
             compressed = compressorService.compressPdf(tempInput);
@@ -119,8 +120,10 @@ public class PDFController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(("Compression failed: " + e.getMessage()).getBytes());
         } finally {
-            if (tempInput != null) tempInput.delete();
-            if (compressed != null) compressed.delete();
+            if (tempInput != null)
+                tempInput.delete();
+            if (compressed != null)
+                compressed.delete();
         }
     }
 }

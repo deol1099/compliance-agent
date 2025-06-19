@@ -1,10 +1,6 @@
 import { PDFDocument } from 'pdf-lib';
 
-<<<<<<< HEAD
-=======
 const MAX_PDF_SIZE_BYTES = 50 * 1024 * 1024; // 50MB
-
->>>>>>> devops
 export async function mergePDFSections(filesBySection, sectionOrder) {
     const mergedPdf = await PDFDocument.create();
 
@@ -25,8 +21,6 @@ export async function mergePDFSections(filesBySection, sectionOrder) {
 
     const mergedPdfBytes = await mergedPdf.save();
     return new Blob([mergedPdfBytes], { type: 'application/pdf' });
-<<<<<<< HEAD
-=======
     const mergedBlob = new Blob([mergedPdfBytes], { type: 'application/pdf' });
 
     if (mergedBlob.size > MAX_PDF_SIZE_BYTES) {
@@ -54,5 +48,4 @@ export async function mergePDFSections(filesBySection, sectionOrder) {
     }
 
     return mergedBlob; // ✅ Return Blob, not Blob URL
->>>>>>> devops
 }
