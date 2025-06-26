@@ -129,5 +129,13 @@ Integrate Stripe for document-based payments
 Add version history for uploaded documents
 Enhanced error logging and monitoring
 
+## How to rebuild on the server
+```
+cd app
+git pull
+sudo sh -c 'docker rm -f $(docker ps -aq)'
+sudo sh -c 'docker rmi -f $(docker images -q)'
+sudo docker compose up -d
 
+```
 ---
