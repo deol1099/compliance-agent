@@ -17,3 +17,4 @@ compliance-app/node_modules/
 .idea/
 .DS_Store
 frontend/node_modules/
+infra/*
