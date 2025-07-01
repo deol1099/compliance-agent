@@ -1,4 +1,12 @@
-# Stage 1: Build
+# Stage 1: Build Frontend
+FROM node:18 AS frontend-builder
+WORKDIR /frontend
+COPY ../frontend/package*.json ./
+RUN npm install
+COPY ../frontend ./
+RUN npm run build
+
+# Stage 2: Build Backend
 FROM openjdk:21-slim AS build
 
 RUN apt-get update && \
@@ -7,14 +15,16 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
+COPY pom.xml ./
+COPY src ./src
+COPY .platform ./platform
 
-COPY pom.xml /app
-COPY src /app/src
-COPY .platform /app/.platform
+# Copy frontend build into Spring Boot static resources
+#COPY --from=frontend-builder /frontend/build ./src/main/resources/static
 
 RUN mvn clean package -DskipTests
 
-# Stage 2: Run
+# Stage 3: Run
 FROM openjdk:21-slim
 
 WORKDIR /app
