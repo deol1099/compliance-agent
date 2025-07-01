@@ -19,7 +19,7 @@ services:
             - "3000:3000"
         restart: always
         environment:
-            BACKEND_URL: "http://nginx:80/api/"
+            - BACKEND_URL="http://nginx:80/api/"
         volumes:
             - /app/node_modules
         networks:

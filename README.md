@@ -63,23 +63,6 @@ The **Compliance Agent** application is a full-stack web solution built to strea
 The platform consists of a React frontend, a Spring Boot backend, and an NGINX reverse proxy for production deployments. It supports drag-and-drop upload zones, document previewing, and secure server-side processing.
 
 ---
-## Folder Structure 
-compliance-agent/
-├── backend/ # Spring Boot backend service
-│ └── PdfMerger/
-│ └── src/main/java/com/complianceagent/Pdf/Merger/
-│
-├── frontend/ # React frontend application
-│ └── compliance-app/
-│ └── src/components/
-│
-├── nginx/ # NGINX reverse proxy config
-│ └── PdfMerger/
-│ └── .platform/nginx/conf.d/client_max_body_size.conf
-│
-├── docker-compose.yml # Local Docker setup
-├── docker-compose.prod.yaml # Production Docker setup
-└── README.md
 
 ## Technologies Used
 
@@ -129,5 +112,13 @@ Integrate Stripe for document-based payments
 Add version history for uploaded documents
 Enhanced error logging and monitoring
 
+## How to rebuild on the server
+```
+cd app
+git pull
+sudo sh -c 'docker rm -f $(docker ps -aq)'
+sudo sh -c 'docker rmi -f $(docker images -q)'
+sudo docker compose up -d
 
+```
 ---
